@@ -5,8 +5,8 @@ from MosesWebservice.settings import GROUP_STATUS, PAYMENT_STATUS
 class User(models.Model):
     first_name = models.CharField(max_length=50, blank=False)
     full_name = models.CharField(max_length=300, blank=False)
-    email = models.CharField(max_length=254, blank=False)
-    facebook_id = models.CharField(max_length=20, blank=False)
+    email = models.CharField(max_length=254, blank=False, unique=True)
+    facebook_id = models.CharField(max_length=20, blank=False, unique=True)
     locale = models.CharField(max_length=5, blank=False)
     timezone = models.IntegerField(blank=False)
 

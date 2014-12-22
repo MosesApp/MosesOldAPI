@@ -11,9 +11,6 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
 class GroupSerializer(serializers.ModelSerializer):
 
-    def __str__(self):
-        return "1111"
-
     class Meta:
         model = Group
         fields = ('id', 'name', 'owner', 'status')

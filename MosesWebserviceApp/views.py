@@ -22,8 +22,9 @@ class UserList(generics.ListCreateAPIView):
     permission_classes = (permissions.IsAuthenticated,)
 
 
-class UserDetail(generics.RetrieveUpdateDestroyAPIView):
+class UserDetail(generics.RetrieveAPIView):
     queryset = User.objects.all()
+    lookup_field = 'facebook_id'
     serializer_class = UserSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
