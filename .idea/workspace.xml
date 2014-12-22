@@ -2,53 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55083824-7ff8-419c-aad5-4b0620bb7542" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/rest_framework/fonts/glyphicons-halflings-regular.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/rest_framework/fonts/glyphicons-halflings-regular.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/rest_framework/fonts/glyphicons-halflings-regular.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/rest_framework/img/logo_moses.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rest_framework/logo_moses.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rest_framework/api.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rest_framework/api_form.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rest_framework/base.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rest_framework/horizontal/checkbox.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rest_framework/inline/checkbox.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rest_framework/vertical/checkbox.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rest_framework/horizontal/checkbox_multiple.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rest_framework/inline/checkbox_multiple.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rest_framework/vertical/checkbox_multiple.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rest_framework/horizontal/fieldset.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rest_framework/inline/fieldset.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rest_framework/vertical/fieldset.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rest_framework/horizontal/form.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rest_framework/inline/form.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rest_framework/vertical/form.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/rest_framework/fonts/glyphicons-halflings-regular.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rest_framework/horizontal/input.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rest_framework/inline/input.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rest_framework/vertical/input.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rest_framework/horizontal/list_fieldset.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rest_framework/inline/list_fieldset.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rest_framework/vertical/list_fieldset.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rest_framework/login.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rest_framework/login_base.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rest_framework/horizontal/radio.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rest_framework/inline/radio.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rest_framework/vertical/radio.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rest_framework/raw_data_form.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rest_framework/horizontal/select.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rest_framework/inline/select.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rest_framework/vertical/select.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rest_framework/horizontal/select_multiple.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rest_framework/inline/select_multiple.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rest_framework/vertical/select_multiple.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rest_framework/horizontal/textarea.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rest_framework/inline/textarea.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/rest_framework/vertical/textarea.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/rest_framework/css/bootstrap-tweaks.css" afterPath="$PROJECT_DIR$/static/rest_framework/css/bootstrap-tweaks.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/rest_framework/css/bootstrap.min.css" afterPath="$PROJECT_DIR$/static/rest_framework/css/bootstrap.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/rest_framework/js/bootstrap.min.js" afterPath="$PROJECT_DIR$/static/rest_framework/js/bootstrap.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/rest_framework/css/default.css" afterPath="$PROJECT_DIR$/static/rest_framework/css/default.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/rest_framework/js/default.js" afterPath="$PROJECT_DIR$/static/rest_framework/js/default.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static/rest_framework/img/logo_moses.png" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/static/rest_framework/img/logo_moses.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/templates/rest_framework/logo_moses.jpg" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/rest_framework/base.html" afterPath="$PROJECT_DIR$/templates/rest_framework/base.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MosesWebservice/settings.py" afterPath="$PROJECT_DIR$/MosesWebservice/settings.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -88,11 +45,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/rest_framework/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.1381781" vertical-offset="351" max-vertical-offset="6912">
-              <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
+            <state vertical-scroll-proportion="-9.428572" vertical-offset="432" max-vertical-offset="6912">
+              <caret line="38" column="43" selection-start-line="38" selection-start-column="43" selection-end-line="38" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="default.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/static/rest_framework/css/default.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.0244797" vertical-offset="1215" max-vertical-offset="2160">
+              <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MosesWebservice/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="2025" max-vertical-offset="3051">
+              <caret line="90" column="31" selection-start-line="90" selection-start-column="31" selection-end-line="90" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -130,10 +107,10 @@
         <option value="$PROJECT_DIR$/MosesWebservice/urls.py" />
         <option value="$PROJECT_DIR$/MosesWebserviceApp/serializers.py" />
         <option value="$PROJECT_DIR$/MosesWebserviceApp/models.py" />
-        <option value="$PROJECT_DIR$/MosesWebservice/settings.py" />
         <option value="$PROJECT_DIR$/templates/rest_framework/login.html" />
         <option value="$PROJECT_DIR$/templates/rest_framework/login_base.html" />
         <option value="$PROJECT_DIR$/templates/rest_framework/templates/rest_framework/base.html" />
+        <option value="$PROJECT_DIR$/MosesWebservice/settings.py" />
         <option value="$PROJECT_DIR$/templates/rest_framework/base.html" />
       </list>
     </option>
@@ -255,6 +232,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rest_framework" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MosesWebservice" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MosesWebservice" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="MosesWebserviceApp" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -297,11 +296,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/static/rest_framework/img" />
       <recent name="$PROJECT_DIR$/templates" />
       <recent name="$PROJECT_DIR$/static" />
       <recent name="$PROJECT_DIR$/templates/rest_framework" />
       <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/MosesWebserviceApp" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/static/rest_framework/img" />
@@ -573,7 +572,13 @@
       <option name="project" value="LOCAL" />
       <updated>1419210626678</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Production settings">
+      <created>1419283129142</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1419283129142</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -582,11 +587,12 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3293247" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21831638" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21831638" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3293247" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15495208" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -595,7 +601,6 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -846,23 +851,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MosesWebservice/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-83.0" vertical-offset="0" max-vertical-offset="2754">
-          <caret line="83" column="0" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/rest_framework/inline/form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="817">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/rest_framework/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="817">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -886,10 +875,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/MosesWebservice/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2025" max-vertical-offset="3051">
+          <caret line="90" column="31" selection-start-line="90" selection-start-column="31" selection-end-line="90" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/rest_framework/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="817">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/rest_framework/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.1381781" vertical-offset="351" max-vertical-offset="6912">
-          <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
+        <state vertical-scroll-proportion="-9.428572" vertical-offset="432" max-vertical-offset="6912">
+          <caret line="38" column="43" selection-start-line="38" selection-start-column="43" selection-end-line="38" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/rest_framework/css/default.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.0244797" vertical-offset="1215" max-vertical-offset="2160">
+          <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
           <folding />
         </state>
       </provider>

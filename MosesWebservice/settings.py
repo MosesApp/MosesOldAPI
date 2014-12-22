@@ -86,6 +86,17 @@ USE_TZ = True
 
 TEMPLATE_DIRS = (os.path.join(os.path.dirname(__file__), '..', 'templates').replace('\\', '/'),)
 
+# Absolute filesystem path to the location of the project
+# Example: "/var/www/example.com/media/"
+PROJECT_ROOT = str(os.getcwd())
+
+STATICFILES_DIRS = (
+    (PROJECT_ROOT + os.sep + 'static'),
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+)
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
