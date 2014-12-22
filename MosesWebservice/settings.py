@@ -22,11 +22,11 @@ PAYMENT_STATUS = (('paid', 'Paid'), ('not paid', 'Not paid'))
 SECRET_KEY = 'ooa+$k1jrw-yvgoaf0+mcvj+a49oxvg72j99=ehmqako5^a^he'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+
+ALLOWED_HOSTS = ['www.mosesapp.me']
 
 TEMPLATE_DEBUG = True
-
-ALLOWED_HOSTS = []
 
 # Application definition
 
