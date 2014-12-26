@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from MosesWebserviceApp.models import User, Bill, Group, GroupUser
-from collections import OrderedDict
+
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
 
@@ -16,14 +16,14 @@ class GroupSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'owner', 'status')
 
 
-class BillSerializer(serializers.HyperlinkedModelSerializer):
+class BillSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Bill
         fields = ('id', 'group', 'receiver', 'debtor', 'amount', 'deadline', 'status')
 
 
-class GroupUserSerializer(serializers.HyperlinkedModelSerializer):
+class GroupUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = GroupUser
