@@ -45,7 +45,7 @@ class Bill(models.Model):
                               blank=False)
 
     def __str__(self):
-        return "%s -> %s -> %s" % (self.group, self.owner, self.status)
+        return "%s -> %s -> %s" % (self.receiver, self.debtor, self.status)
 
     class Meta:
         ordering = ('amount', )
@@ -54,3 +54,10 @@ class Bill(models.Model):
 class GroupUser(models.Model):
     user = models.ForeignKey(User, blank=False, related_name='user')
     group = models.ForeignKey(Group, blank=False, related_name='group')
+
+    def __str__(self):
+        return "%s -> %s" % (self.user, self.group)
+
+    class Meta:
+        ordering = ('user', )
+        unique_together = (("user", "group"),)

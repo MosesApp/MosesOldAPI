@@ -4,6 +4,7 @@ from rest_framework import generics, permissions
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
+from django.db.models import Q
 
 
 @api_view(('GET',))
@@ -47,11 +48,17 @@ class BillList(generics.ListCreateAPIView):
     permission_classes = (permissions.IsAuthenticated,)
 
 
-class BillDetail(generics.RetrieveAPIView):
-    queryset = Bill.objects.all()
-    lookup_field = ('receiver', 'debtor')
+class BillDetail(generics.ListAPIView):
     serializer_class = BillSerializer
     permission_classes = (permissions.IsAuthenticated,)
+
+    def get_queryset(self):
+        """
+        This view should return a list of all the purchases for
+        the user as determined by the username portion of the URL.
+        """
+        key = self.kwargs['pk']
+        return Bill.objects.filter(Q(debtor__pk=key) | Q(receiver__pk=key))
 
 
 class GroupUserList(generics.ListCreateAPIView):
@@ -60,8 +67,14 @@ class GroupUserList(generics.ListCreateAPIView):
     permission_classes = (permissions.IsAuthenticated,)
 
 
-class GroupUserDetail(generics.RetrieveAPIView):
-    queryset = GroupUser.objects.all()
-    lookup_field = ('user', )
+class GroupUserDetail(generics.ListAPIView):
     serializer_class = GroupUserSerializer
     permission_classes = (permissions.IsAuthenticated,)
+
+    def get_queryset(self):
+        """
+        This view should return a list of all the purchases for
+        the user as determined by the username portion of the URL.
+        """
+        key = self.kwargs['pk']
+        return GroupUser.objects.filter(Q(user__pk=key))
