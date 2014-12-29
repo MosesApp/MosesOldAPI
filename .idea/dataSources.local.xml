@@ -4,8 +4,6 @@
     <data-source name="Django default" uuid="9ba22abd-383d-4aff-a716-df20b15528dc">
       <user-name>moses_user</user-name>
       <user-password>dfe7dfc5dfd9dfcfdfd9df9ddf9cdf9f</user-password>
-      <schema-pattern>moses.pg_catalog moses.public</schema-pattern>
-      <default-schemas>moses.pg_catalog moses.public</default-schemas>
     </data-source>
   </component>
 </project>

@@ -30,6 +30,7 @@ class Group(models.Model):
 
     class Meta:
         ordering = ('status', )
+        unique_together = (("owner", "name"),)
 
 
 class Bill(models.Model):

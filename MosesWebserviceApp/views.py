@@ -49,6 +49,7 @@ class BillList(generics.ListCreateAPIView):
 
 class BillDetail(generics.RetrieveAPIView):
     queryset = Bill.objects.all()
+    lookup_field = ('receiver', 'debtor')
     serializer_class = BillSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
@@ -61,5 +62,6 @@ class GroupUserList(generics.ListCreateAPIView):
 
 class GroupUserDetail(generics.RetrieveAPIView):
     queryset = GroupUser.objects.all()
+    lookup_field = ('user', )
     serializer_class = GroupUserSerializer
     permission_classes = (permissions.IsAuthenticated,)
