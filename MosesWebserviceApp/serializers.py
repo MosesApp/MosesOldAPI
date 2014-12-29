@@ -25,6 +25,8 @@ class BillSerializer(serializers.ModelSerializer):
 
 class GroupUserSerializer(serializers.ModelSerializer):
 
+    group = GroupSerializer(read_only=True)
+
     class Meta:
         model = GroupUser
         fields = ('id', 'user', 'group')
