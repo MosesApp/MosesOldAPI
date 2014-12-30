@@ -11,7 +11,7 @@ class User(models.Model):
     timezone = models.IntegerField(blank=False)
 
     def __str__(self):
-        return "%s -> %s" % (self.full_name, self.email)
+        return "%s;%s" % (self.full_name, self.email)
 
     class Meta:
         ordering = ('facebook_id',)
@@ -26,7 +26,7 @@ class Group(models.Model):
                               blank=False)
 
     def __str__(self):
-        return "%s -> %s -> %s" % (self.name, self.owner, self.status)
+        return "%s;%s;%s" % (self.name, self.owner, self.status)
 
     class Meta:
         ordering = ('status', )
@@ -45,7 +45,7 @@ class Bill(models.Model):
                               blank=False)
 
     def __str__(self):
-        return "%s -> %s -> %s" % (self.receiver, self.debtor, self.status)
+        return "%s;%s;%s" % (self.receiver, self.debtor, self.status)
 
     class Meta:
         ordering = ('amount', )
@@ -56,7 +56,7 @@ class GroupUser(models.Model):
     group = models.ForeignKey(Group, blank=False, related_name='group')
 
     def __str__(self):
-        return "%s -> %s" % (self.user, self.group)
+        return "%s;%s" % (self.user, self.group)
 
     class Meta:
         ordering = ('user', )

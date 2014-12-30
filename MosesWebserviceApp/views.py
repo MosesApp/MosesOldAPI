@@ -1,5 +1,6 @@
 from MosesWebserviceApp.models import User, Group, Bill, GroupUser
-from MosesWebserviceApp.serializers import UserSerializer, GroupSerializer, BillSerializer, GroupUserSerializer
+from MosesWebserviceApp.serializers import UserSerializer, GroupSerializer, BillSerializer, \
+    BillDebtorSerializer, BillReceiverSerializer, GroupUserSerializer, WriteGroupUserSerializer
 from rest_framework import generics, permissions
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -10,10 +11,11 @@ from django.db.models import Q
 @api_view(('GET',))
 def api_root(request, format=None):
     return Response({
-        'users': reverse('user-list', request=request, format=format),
-        'bills': reverse('bill-list', request=request, format=format),
-        'groups': reverse('group-list', request=request, format=format),
-        'group_users': reverse('group_user-list', request=request, format=format)
+        'List all Users': reverse('user-list', request=request, format=format),
+        'List all Bills': reverse('bill-list', request=request, format=format),
+        'List all Groups': reverse('group-list', request=request, format=format),
+        'Create Group_User relation': reverse('group_user-create', request=request, format=format),
+        'List all Group_Users': reverse('group_user-list', request=request, format=format)
     })
 
 
@@ -48,22 +50,35 @@ class BillList(generics.ListCreateAPIView):
     permission_classes = (permissions.IsAuthenticated,)
 
 
-class BillDetail(generics.ListAPIView):
-    serializer_class = BillSerializer
+class BillDetailReceiver(generics.ListAPIView):
+    serializer_class = BillReceiverSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
     def get_queryset(self):
-        """
-        This view should return a list of all the purchases for
-        the user as determined by the username portion of the URL.
-        """
+
         key = self.kwargs['pk']
-        return Bill.objects.filter(Q(debtor__pk=key) | Q(receiver__pk=key))
+        return Bill.objects.filter(Q(receiver__pk=key))
 
 
-class GroupUserList(generics.ListCreateAPIView):
+class BillDetailDebtor(generics.ListAPIView):
+    serializer_class = BillDebtorSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get_queryset(self):
+
+        key = self.kwargs['pk']
+        return Bill.objects.filter(Q(debtor__pk=key))
+
+
+class GroupUserList(generics.ListAPIView):
     queryset = GroupUser.objects.all()
     serializer_class = GroupUserSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+
+class GroupUserCreate(generics.CreateAPIView):
+    queryset = GroupUser.objects.all()
+    serializer_class = WriteGroupUserSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
 
@@ -72,9 +87,6 @@ class GroupUserDetail(generics.ListAPIView):
     permission_classes = (permissions.IsAuthenticated,)
 
     def get_queryset(self):
-        """
-        This view should return a list of all the purchases for
-        the user as determined by the username portion of the URL.
-        """
+
         key = self.kwargs['pk']
         return GroupUser.objects.filter(Q(user__pk=key))

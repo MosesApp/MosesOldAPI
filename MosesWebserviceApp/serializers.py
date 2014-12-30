@@ -23,9 +23,33 @@ class BillSerializer(serializers.ModelSerializer):
         fields = ('id', 'group', 'receiver', 'debtor', 'amount', 'deadline', 'status')
 
 
-class GroupUserSerializer(serializers.ModelSerializer):
+class BillReceiverSerializer(serializers.ModelSerializer):
 
-    group = GroupSerializer(read_only=True)
+    debtor = UserSerializer()
+
+    class Meta:
+        model = Bill
+        fields = ('id', 'group', 'receiver', 'debtor', 'amount', 'deadline', 'status')
+
+
+class BillDebtorSerializer(serializers.ModelSerializer):
+
+    receiver = UserSerializer()
+
+    class Meta:
+        model = Bill
+        fields = ('id', 'group', 'receiver', 'debtor', 'amount', 'deadline', 'status')
+
+
+class GroupUserSerializer(serializers.ModelSerializer):
+    group = GroupSerializer()
+
+    class Meta:
+        model = GroupUser
+        fields = ('id', 'user', 'group')
+
+
+class WriteGroupUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = GroupUser
