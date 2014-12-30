@@ -13,7 +13,7 @@ class GroupSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Group
-        fields = ('id', 'name', 'owner', 'status')
+        fields = ('id', 'name', 'image', 'owner', 'status')
 
 
 class BillSerializer(serializers.ModelSerializer):

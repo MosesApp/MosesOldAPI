@@ -19,6 +19,7 @@ class User(models.Model):
 
 class Group(models.Model):
     name = models.CharField(max_length=300, blank=False)
+    image = models.ImageField(upload_to='images/groups', max_length=254, null=True)
     owner = models.ForeignKey(User, blank=False, related_name='owner')
     status = models.CharField(choices=GROUP_STATUS,
                               default='active',
@@ -35,6 +36,7 @@ class Group(models.Model):
 
 class Bill(models.Model):
     group = models.ForeignKey(Group)
+    receipt_image = models.ImageField(upload_to='images/receipts', max_length=254, null=True)
     receiver = models.ForeignKey(User, blank=False, related_name='receiver')
     debtor = models.ForeignKey(User, blank=False, related_name='debtor')
     amount = models.IntegerField(blank=False)
