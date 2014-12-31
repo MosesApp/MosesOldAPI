@@ -1,6 +1,8 @@
 from django.conf.urls import patterns, include, url
 from rest_framework.urlpatterns import format_suffix_patterns
+from MosesWebservice import settings
 from MosesWebserviceApp import views
+from django.conf.urls.static import static
 
 urlpatterns = format_suffix_patterns(patterns('MosesWebserviceApp.views',
     url(r'^$', 'api_root'),
@@ -39,6 +41,7 @@ urlpatterns = format_suffix_patterns(patterns('MosesWebserviceApp.views',
         views.GroupUserDetail.as_view(),
         name='group_user-detail'),
 
-))
+)) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += patterns('', url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),)
+

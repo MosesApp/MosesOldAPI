@@ -102,6 +102,12 @@ STATICFILES_DIRS = (
 
 STATIC_URL = '/static/'
 
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = (PROJECT_ROOT + os.sep)
+
+IMAGE_FOLDER = 'images'
+
 REST_FRAMEWORK = {
     'PAGINATE_BY': 10
 }
