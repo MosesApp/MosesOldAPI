@@ -1,6 +1,5 @@
 import uuid
 from django.db import models
-from MosesWebservice import settings
 from MosesWebservice.settings import GROUP_STATUS, PAYMENT_STATUS, IMAGE_FOLDER
 import os
 
@@ -12,8 +11,7 @@ def get_unique_image_file_path(instance=None, filename='dummy.jpg'):
     """
     ext = filename.split('.')[-1]
     filename = "%s.%s" % (uuid.uuid4(), ext)
-    # TODO: 'images' is hard coded
-    return os.path.join('images', filename)
+    return os.path.join(IMAGE_FOLDER, filename)
 
 
 class User(models.Model):
@@ -33,15 +31,12 @@ class User(models.Model):
 
 class Group(models.Model):
     name = models.CharField(max_length=300, blank=False)
-    image = models.ImageField(upload_to=get_unique_image_file_path)
+    image = models.ImageField(upload_to=get_unique_image_file_path, null=True)
     owner = models.ForeignKey(User, blank=False, related_name='owner')
     status = models.CharField(choices=GROUP_STATUS,
                               default='active',
                               max_length=10,
                               blank=False)
-
-    def get_image_abs_path(self):
-        return os.path.join(settings.MEDIA_ROOT, self.image.name)
 
     def __str__(self):
         return "%s;%s;%s" % (self.name, self.owner, self.status)
@@ -53,7 +48,7 @@ class Group(models.Model):
 
 class Bill(models.Model):
     group = models.ForeignKey(Group)
-    receipt_image = models.ImageField(upload_to=get_unique_image_file_path)
+    receipt_image = models.ImageField(upload_to=get_unique_image_file_path, null=True)
     receiver = models.ForeignKey(User, blank=False, related_name='receiver')
     debtor = models.ForeignKey(User, blank=False, related_name='debtor')
     amount = models.IntegerField(blank=False)
