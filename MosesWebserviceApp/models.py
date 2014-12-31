@@ -1,5 +1,6 @@
 import uuid
 from django.db import models
+from rest_framework.exceptions import ValidationError
 from MosesWebservice.settings import GROUP_STATUS, PAYMENT_STATUS, IMAGE_FOLDER
 import os
 
@@ -57,6 +58,12 @@ class Bill(models.Model):
                               default='not paid',
                               max_length=10,
                               blank=False)
+
+    def save(self, *args, **kwargs):
+        if self.receiver != self.debtor:
+            super(Bill, self).save(*args, **kwargs)
+        else:
+            raise ValidationError("Receiver and Debtor cannot be the same person")
 
     def __str__(self):
         return "%s;%s;%s" % (self.receiver, self.debtor, self.status)
