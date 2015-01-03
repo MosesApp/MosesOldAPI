@@ -61,14 +61,12 @@ class Bill(models.Model):
 
     def save(self, *args, **kwargs):
         if self.receiver != self.debtor:
-            super(Bill, self).save(*args, **kwargs)
-        else:
             raise ValidationError("Receiver and Debtor cannot be the same person")
-
-        if self.amount > 0:
-            super(Bill, self).save(*args, **kwargs)
-        else:
+        elif self.amount < 0:
             raise ValidationError("Bill amount must be higher than zero")
+        else:
+            super(Bill, self).save(*args, **kwargs)
+
 
     def __str__(self):
         return "%s;%s;%s" % (self.receiver, self.debtor, self.status)
