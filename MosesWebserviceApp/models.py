@@ -24,7 +24,7 @@ class User(models.Model):
     timezone = models.IntegerField(blank=False)
 
     def __str__(self):
-        return "%s;%s" % (self.full_name, self.email)
+        return "%s %s;%s" % (self.first_name, self.full_name, self.email)
 
     class Meta:
         ordering = ('facebook_id',)
