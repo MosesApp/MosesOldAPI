@@ -65,6 +65,11 @@ class Bill(models.Model):
         else:
             raise ValidationError("Receiver and Debtor cannot be the same person")
 
+        if self.amount > 0:
+            super(Bill, self).save(*args, **kwargs)
+        else:
+            raise ValidationError("Bill amount must be higher than zero")
+
     def __str__(self):
         return "%s;%s;%s" % (self.receiver, self.debtor, self.status)
 
