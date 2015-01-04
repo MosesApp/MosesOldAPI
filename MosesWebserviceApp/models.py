@@ -60,7 +60,7 @@ class Bill(models.Model):
                               blank=False)
 
     def save(self, *args, **kwargs):
-        if self.receiver != self.debtor:
+        if self.receiver == self.debtor:
             raise ValidationError("Receiver and Debtor cannot be the same person")
         elif self.amount < 0:
             raise ValidationError("Bill amount must be higher than zero")
