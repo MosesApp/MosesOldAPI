@@ -29,7 +29,7 @@ class BillReceiverSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Bill
-        fields = ('id', 'group', 'receiver', 'debtor', 'amount', 'deadline', 'status')
+        fields = ('id', 'group', 'receipt_image', 'receiver', 'debtor', 'amount', 'deadline', 'status')
 
 
 class BillDebtorSerializer(serializers.ModelSerializer):
@@ -38,7 +38,7 @@ class BillDebtorSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Bill
-        fields = ('id', 'group', 'receiver', 'debtor', 'amount', 'deadline', 'status')
+        fields = ('id', 'group', 'receipt_image', 'receiver', 'debtor', 'amount', 'deadline', 'status')
 
 
 class GroupUserSerializer(serializers.ModelSerializer):

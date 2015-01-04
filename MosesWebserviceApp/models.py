@@ -67,7 +67,6 @@ class Bill(models.Model):
         else:
             super(Bill, self).save(*args, **kwargs)
 
-
     def __str__(self):
         return "%s;%s;%s" % (self.receiver, self.debtor, self.status)
 
