@@ -1,3 +1,4 @@
+from rest_framework.exceptions import ValidationError
 from MosesWebserviceApp.models import User, Group, Bill, GroupUser
 from MosesWebserviceApp.serializers import UserSerializer, GroupSerializer, BillSerializer, \
     BillDebtorSerializer, BillReceiverSerializer, GroupUserSerializer, WriteGroupUserSerializer
@@ -5,7 +6,6 @@ from rest_framework import generics, permissions
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
-from django.db.models import Q
 
 
 @api_view(('GET',))
@@ -37,6 +37,10 @@ class GroupList(generics.ListCreateAPIView):
     serializer_class = GroupSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
+    def perform_create(self, serializer):
+        instance = serializer.save()
+        GroupUser(user=instance.owner, group=instance).save()
+
 
 class GroupDetail(generics.RetrieveAPIView):
     queryset = Group.objects.all()
@@ -49,6 +53,19 @@ class BillList(generics.ListCreateAPIView):
     serializer_class = BillSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
+    def perform_create(self, serializer):
+        receiver_exists = GroupUser.objects.filter(user__pk=self.request.DATA['receiver'], group__pk=self.request.DATA['group']).exists()
+        debtor_exists = GroupUser.objects.filter(user__pk=self.request.DATA['debtor'], group__pk=self.request.DATA['group']).exists()
+        if receiver_exists and debtor_exists:
+            serializer.save()
+        else:
+            detail = ""
+            if receiver_exists and not debtor_exists:
+                detail = "Receiver is enrolled in group, but Debtor is not"
+            elif debtor_exists and not receiver_exists:
+                detail = "Debtor is enrolled in group, but Receiver is not"
+            raise ValidationError(detail)
+
 
 class BillDetailReceiver(generics.ListAPIView):
     serializer_class = BillReceiverSerializer
@@ -57,7 +74,7 @@ class BillDetailReceiver(generics.ListAPIView):
     def get_queryset(self):
 
         key = self.kwargs['pk']
-        return Bill.objects.filter(Q(receiver__pk=key))
+        return Bill.objects.filter(receiver__pk=key)
 
 
 class BillDetailDebtor(generics.ListAPIView):
@@ -67,7 +84,7 @@ class BillDetailDebtor(generics.ListAPIView):
     def get_queryset(self):
 
         key = self.kwargs['pk']
-        return Bill.objects.filter(Q(debtor__pk=key))
+        return Bill.objects.filter(debtor__pk=key)
 
 
 class GroupUserList(generics.ListAPIView):
@@ -89,4 +106,4 @@ class GroupUserDetail(generics.ListAPIView):
     def get_queryset(self):
 
         key = self.kwargs['pk']
-        return GroupUser.objects.filter(Q(user__pk=key))
+        return GroupUser.objects.filter(user__pk=key)
