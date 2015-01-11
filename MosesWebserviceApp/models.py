@@ -1,7 +1,7 @@
 import uuid
 from django.db import models
 from rest_framework.exceptions import ValidationError
-from MosesWebservice.settings import GROUP_STATUS, PAYMENT_STATUS, IMAGE_FOLDER
+from MosesWebservice.settings import GROUP_STATUS, PAYMENT_STATUS, IMAGE_FOLDER, PAYMENT_CURRENCY
 import os
 
 
@@ -48,11 +48,17 @@ class Group(models.Model):
 
 
 class Bill(models.Model):
+    name = models.CharField(blank=False, max_length=300)
+    description = models.CharField(blank=False, max_length=500)
     group = models.ForeignKey(Group)
     receipt_image = models.ImageField(upload_to=get_unique_image_file_path, null=True)
     receiver = models.ForeignKey(User, blank=False, related_name='receiver')
     debtor = models.ForeignKey(User, blank=False, related_name='debtor')
     amount = models.IntegerField(blank=False)
+    currency = models.CharField(blank=False,
+                                default='BR',
+                                max_length=3,
+                                choices=PAYMENT_CURRENCY)
     deadline = models.DateTimeField(blank=False)
     status = models.CharField(choices=PAYMENT_STATUS,
                               default='not paid',
@@ -68,7 +74,7 @@ class Bill(models.Model):
             super(Bill, self).save(*args, **kwargs)
 
     def __str__(self):
-        return "%s;%s;%s" % (self.receiver, self.debtor, self.status)
+        return "%s;%s;%s;%s" % (self.name, self.receiver, self.debtor, self.status)
 
     class Meta:
         ordering = ('amount', )

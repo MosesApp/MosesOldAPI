@@ -14,11 +14,14 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Bill',
             fields=[
-                ('id', models.AutoField(serialize=False, primary_key=True, verbose_name='ID', auto_created=True)),
-                ('receipt_image', models.ImageField(upload_to=MosesWebserviceApp.models.get_unique_image_file_path, null=True)),
+                ('id', models.AutoField(verbose_name='ID', primary_key=True, serialize=False, auto_created=True)),
+                ('name', models.CharField(max_length=300)),
+                ('description', models.CharField(max_length=500)),
+                ('receipt_image', models.ImageField(null=True, upload_to=MosesWebserviceApp.models.get_unique_image_file_path)),
                 ('amount', models.IntegerField()),
+                ('currency', models.CharField(default='BR', max_length=3, choices=[('CA', 'CA'), ('US', 'US'), ('BR', 'BR')])),
                 ('deadline', models.DateTimeField()),
-                ('status', models.CharField(max_length=10, choices=[('paid', 'Paid'), ('not paid', 'Not paid')], default='not paid')),
+                ('status', models.CharField(default='not paid', max_length=10, choices=[('paid', 'Paid'), ('not paid', 'Not paid')])),
             ],
             options={
                 'ordering': ('amount',),
@@ -28,10 +31,10 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Group',
             fields=[
-                ('id', models.AutoField(serialize=False, primary_key=True, verbose_name='ID', auto_created=True)),
+                ('id', models.AutoField(verbose_name='ID', primary_key=True, serialize=False, auto_created=True)),
                 ('name', models.CharField(max_length=300)),
-                ('image', models.ImageField(upload_to=MosesWebserviceApp.models.get_unique_image_file_path, null=True)),
-                ('status', models.CharField(max_length=10, choices=[('active', 'Active'), ('inactive', 'Inactive')], default='active')),
+                ('image', models.ImageField(null=True, upload_to=MosesWebserviceApp.models.get_unique_image_file_path)),
+                ('status', models.CharField(default='active', max_length=10, choices=[('active', 'Active'), ('inactive', 'Inactive')])),
             ],
             options={
                 'ordering': ('status',),
@@ -41,7 +44,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='GroupUser',
             fields=[
-                ('id', models.AutoField(serialize=False, primary_key=True, verbose_name='ID', auto_created=True)),
+                ('id', models.AutoField(verbose_name='ID', primary_key=True, serialize=False, auto_created=True)),
                 ('administrator', models.BooleanField(default=False)),
                 ('group', models.ForeignKey(to='MosesWebserviceApp.Group', related_name='group')),
             ],
@@ -53,7 +56,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='User',
             fields=[
-                ('id', models.AutoField(serialize=False, primary_key=True, verbose_name='ID', auto_created=True)),
+                ('id', models.AutoField(verbose_name='ID', primary_key=True, serialize=False, auto_created=True)),
                 ('first_name', models.CharField(max_length=50)),
                 ('full_name', models.CharField(max_length=300)),
                 ('email', models.CharField(max_length=254, unique=True)),
