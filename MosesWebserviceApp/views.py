@@ -39,7 +39,7 @@ class GroupList(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         instance = serializer.save()
-        GroupUser(user=instance.owner, group=instance).save()
+        GroupUser(user=instance.creator, group=instance, administrator=True).save()
 
 
 class GroupDetail(generics.RetrieveAPIView):

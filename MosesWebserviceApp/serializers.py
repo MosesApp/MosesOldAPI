@@ -13,7 +13,7 @@ class GroupSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Group
-        fields = ('id', 'name', 'image', 'owner', 'status')
+        fields = ('id', 'name', 'image', 'creator', 'status')
 
 
 class BillSerializer(serializers.ModelSerializer):
@@ -46,14 +46,14 @@ class GroupUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = GroupUser
-        fields = ('id', 'user', 'group')
+        fields = ('id', 'user', 'group', 'administrator')
 
 
 class WriteGroupUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = GroupUser
-        fields = ('id', 'user', 'group')
+        fields = ('id', 'user', 'group', 'administrator')
 
 
 

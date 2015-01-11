@@ -33,18 +33,18 @@ class User(models.Model):
 class Group(models.Model):
     name = models.CharField(max_length=300, blank=False)
     image = models.ImageField(upload_to=get_unique_image_file_path, null=True)
-    owner = models.ForeignKey(User, blank=False, related_name='owner')
+    creator = models.ForeignKey(User, blank=False, related_name='creator')
     status = models.CharField(choices=GROUP_STATUS,
                               default='active',
                               max_length=10,
                               blank=False)
 
     def __str__(self):
-        return "%s;%s;%s" % (self.name, self.owner, self.status)
+        return "%s;%s;%s" % (self.name, self.creator, self.status)
 
     class Meta:
         ordering = ('status', )
-        unique_together = (("owner", "name"),)
+        unique_together = (("creator", "name"),)
 
 
 class Bill(models.Model):
@@ -77,9 +77,10 @@ class Bill(models.Model):
 class GroupUser(models.Model):
     user = models.ForeignKey(User, blank=False, related_name='user')
     group = models.ForeignKey(Group, blank=False, related_name='group')
+    administrator = models.BooleanField(blank=False, default=False)
 
     def __str__(self):
-        return "%s;%s" % (self.user, self.group)
+        return "%s;%s;%s" % (self.user, self.group, self.administrator)
 
     class Meta:
         ordering = ('user', )
