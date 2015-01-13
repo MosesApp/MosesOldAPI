@@ -29,6 +29,31 @@ class BillSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         members_data = validated_data.pop('members')
+
+        # Validate Bill and Members
+        taker = False
+        debtor = False
+        for member in members_data:
+            member = list(member.items())
+            if member and \
+               member[0][0] == 'member' and \
+               member[1][0] == 'relation' and \
+               member[2][0] == 'status':
+                if member[1][1] == 'taker':
+                    taker = True
+                elif member[1][1] == 'debtor':
+                    debtor = True
+                else:
+                    raise serializers.ValidationError("Bill member should be a taker, or a debtor")
+
+                if not GroupUser.objects.filter(group=validated_data['group'], user=member[0][1]).exists():
+                    raise serializers.ValidationError("Member %s does not exist in group %s" %
+                                                      (member[0][1], validated_data['group']))
+
+        if not taker or not debtor:
+            raise serializers.ValidationError("A bill should be composed from at least one taker, and one debtor")
+
+        # Save Bill and Members
         bill = Bill.objects.create(**validated_data)
         bill.members = []
         for member in members_data:
