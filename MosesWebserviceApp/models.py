@@ -67,6 +67,7 @@ class Bill(models.Model):
 
 class BillUser(models.Model):
     bill = models.ForeignKey(Bill, blank=False, null=True, related_name='bill')
+    amount = models.IntegerField(blank=False)
     member = models.ForeignKey(User, blank=False, related_name='member')
     relation = models.CharField(choices=BILL_RELATION,
                                 max_length=10,
