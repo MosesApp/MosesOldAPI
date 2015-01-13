@@ -1,24 +1,28 @@
-from rest_framework.exceptions import ValidationError
-from MosesWebserviceApp.models import User, Group, Bill, GroupUser
-from MosesWebserviceApp.serializers import UserSerializer, GroupSerializer, BillSerializer, \
-    BillDebtorSerializer, BillReceiverSerializer, GroupUserSerializer, WriteGroupUserSerializer
+from MosesWebserviceApp.models import User, Group, Bill, BillUser, GroupUser
+from MosesWebserviceApp.serializers import UserSerializer, GroupSerializer, BillSerializer,\
+    ReadGroupUserSerializerUser, ReadGroupUserSerializerGroup, WriteGroupUserSerializer, BillUserSerializerUser
 from rest_framework import generics, permissions
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
+from MosesWebservice.settings import SERVER_URL
 
 
 @api_view(('GET',))
 def api_root(request, format=None):
     return Response({
-        'List all Users': reverse('user-list', request=request, format=format),
-        'List all Bills': reverse('bill-list', request=request, format=format),
-        'List all Groups': reverse('group-list', request=request, format=format),
-        'Create Group_User relation': reverse('group_user-create', request=request, format=format),
-        'List all Group_Users': reverse('group_user-list', request=request, format=format)
+        '[CRUD] Users': reverse('user-crud', request=request, format=format),
+        '[CRUD] Group': reverse('group-crud', request=request, format=format),
+        '[CREATE] Group_User': reverse('group_user-create', request=request, format=format),
+        '[READ] User groups': SERVER_URL + 'group_user_user/$id',
+        '[READ] Group users': SERVER_URL + 'group_user_group/$id',
+        '[CREATE] Bill': SERVER_URL + 'bill/',
+        '[CRUD] Bill_User': reverse('bill_user-crud', request=request, format=format),
+        '[READ] Bill_User': SERVER_URL + 'bill_user/$id',
     })
 
 
+# User CRUD
 class UserList(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
@@ -32,6 +36,7 @@ class UserDetail(generics.RetrieveAPIView):
     permission_classes = (permissions.IsAuthenticated,)
 
 
+# Group CRUD
 class GroupList(generics.ListCreateAPIView):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
@@ -42,68 +47,55 @@ class GroupList(generics.ListCreateAPIView):
         GroupUser(user=instance.creator, group=instance, administrator=True).save()
 
 
-class GroupDetail(generics.RetrieveAPIView):
-    queryset = Group.objects.all()
-    serializer_class = GroupSerializer
-    permission_classes = (permissions.IsAuthenticated,)
-
-
-class BillList(generics.ListCreateAPIView):
+# Bill Create
+class BillCreate(generics.CreateAPIView):
     queryset = Bill.objects.all()
     serializer_class = BillSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
     def perform_create(self, serializer):
-        receiver_exists = GroupUser.objects.filter(user__pk=self.request.DATA['receiver'], group__pk=self.request.DATA['group']).exists()
-        debtor_exists = GroupUser.objects.filter(user__pk=self.request.DATA['debtor'], group__pk=self.request.DATA['group']).exists()
-        if receiver_exists and debtor_exists:
-            serializer.save()
-        else:
-            detail = ""
-            if receiver_exists and not debtor_exists:
-                detail = "Receiver is enrolled in group, but Debtor is not"
-            elif debtor_exists and not receiver_exists:
-                detail = "Debtor is enrolled in group, but Receiver is not"
-            raise ValidationError(detail)
+        serializer.save()
 
 
-class BillDetailReceiver(generics.ListAPIView):
-    serializer_class = BillReceiverSerializer
+# BillUser CRUD
+class BillUserList(generics.ListCreateAPIView):
+    queryset = BillUser.objects.all()
+    serializer_class = BillUserSerializerUser
+    permission_classes = (permissions.IsAuthenticated,)
+
+
+class BillUserDetail(generics.ListAPIView):
+    serializer_class = BillUserSerializerUser
     permission_classes = (permissions.IsAuthenticated,)
 
     def get_queryset(self):
 
         key = self.kwargs['pk']
-        return Bill.objects.filter(receiver__pk=key)
+        return BillUser.objects.filter(member__pk=key)
 
 
-class BillDetailDebtor(generics.ListAPIView):
-    serializer_class = BillDebtorSerializer
-    permission_classes = (permissions.IsAuthenticated,)
-
-    def get_queryset(self):
-
-        key = self.kwargs['pk']
-        return Bill.objects.filter(debtor__pk=key)
-
-
-class GroupUserList(generics.ListAPIView):
-    queryset = GroupUser.objects.all()
-    serializer_class = GroupUserSerializer
-    permission_classes = (permissions.IsAuthenticated,)
-
-
+# GroupUser CRUD
 class GroupUserCreate(generics.CreateAPIView):
     queryset = GroupUser.objects.all()
     serializer_class = WriteGroupUserSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
 
-class GroupUserDetail(generics.ListAPIView):
-    serializer_class = GroupUserSerializer
+class GroupUserDetailUser(generics.ListAPIView):
+    serializer_class = ReadGroupUserSerializerUser
     permission_classes = (permissions.IsAuthenticated,)
 
     def get_queryset(self):
 
         key = self.kwargs['pk']
         return GroupUser.objects.filter(user__pk=key)
+
+
+class GroupUserDetailGroup(generics.ListAPIView):
+    serializer_class = ReadGroupUserSerializerGroup
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get_queryset(self):
+
+        key = self.kwargs['pk']
+        return GroupUser.objects.filter(group__pk=key)

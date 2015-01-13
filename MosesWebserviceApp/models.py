@@ -1,7 +1,6 @@
 import uuid
 from django.db import models
-from rest_framework.exceptions import ValidationError
-from MosesWebservice.settings import GROUP_STATUS, PAYMENT_STATUS, IMAGE_FOLDER, PAYMENT_CURRENCY
+from MosesWebservice.settings import GROUP_STATUS, PAYMENT_STATUS, PAYMENT_CURRENCY, IMAGE_FOLDER, BILL_RELATION
 import os
 
 
@@ -50,34 +49,39 @@ class Group(models.Model):
 class Bill(models.Model):
     name = models.CharField(blank=False, max_length=300)
     description = models.CharField(blank=False, max_length=500)
-    group = models.ForeignKey(Group)
+    group = models.ForeignKey(Group, blank=False)
     receipt_image = models.ImageField(upload_to=get_unique_image_file_path, null=True)
-    receiver = models.ForeignKey(User, blank=False, related_name='receiver')
-    debtor = models.ForeignKey(User, blank=False, related_name='debtor')
     amount = models.IntegerField(blank=False)
     currency = models.CharField(blank=False,
                                 default='BR',
                                 max_length=3,
                                 choices=PAYMENT_CURRENCY)
     deadline = models.DateTimeField(blank=False)
+
+    def __str__(self):
+        return "%s;%s;%s" % (self.name, self.description, self.group)
+
+    class Meta:
+        ordering = ('amount', )
+
+
+class BillUser(models.Model):
+    bill = models.ForeignKey(Bill, blank=False, null=True, related_name='bill')
+    member = models.ForeignKey(User, blank=False, related_name='member')
+    relation = models.CharField(choices=BILL_RELATION,
+                                max_length=10,
+                                blank=False,
+                                default='debtor')
     status = models.CharField(choices=PAYMENT_STATUS,
                               default='not paid',
                               max_length=10,
                               blank=False)
 
-    def save(self, *args, **kwargs):
-        if self.receiver == self.debtor:
-            raise ValidationError("Receiver and Debtor cannot be the same person")
-        elif self.amount < 0:
-            raise ValidationError("Bill amount must be higher than zero")
-        else:
-            super(Bill, self).save(*args, **kwargs)
-
     def __str__(self):
-        return "%s;%s;%s;%s" % (self.name, self.receiver, self.debtor, self.status)
+        return "%s;%s;%s;%s" % (self.bill, self.member, self.relation, self.status)
 
     class Meta:
-        ordering = ('amount', )
+        ordering = ('member', )
 
 
 class GroupUser(models.Model):

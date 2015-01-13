@@ -14,14 +14,13 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Bill',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', primary_key=True, serialize=False, auto_created=True)),
+                ('id', models.AutoField(auto_created=True, primary_key=True, verbose_name='ID', serialize=False)),
                 ('name', models.CharField(max_length=300)),
                 ('description', models.CharField(max_length=500)),
                 ('receipt_image', models.ImageField(null=True, upload_to=MosesWebserviceApp.models.get_unique_image_file_path)),
                 ('amount', models.IntegerField()),
-                ('currency', models.CharField(default='BR', max_length=3, choices=[('CA', 'CA'), ('US', 'US'), ('BR', 'BR')])),
+                ('currency', models.CharField(max_length=3, default='BR', choices=[('CA', 'CA'), ('US', 'US'), ('BR', 'BR')])),
                 ('deadline', models.DateTimeField()),
-                ('status', models.CharField(default='not paid', max_length=10, choices=[('paid', 'Paid'), ('not paid', 'Not paid')])),
             ],
             options={
                 'ordering': ('amount',),
@@ -29,12 +28,25 @@ class Migration(migrations.Migration):
             bases=(models.Model,),
         ),
         migrations.CreateModel(
+            name='BillUser',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, verbose_name='ID', serialize=False)),
+                ('relation', models.CharField(max_length=10, default='debtor', choices=[('debtor', 'debtor'), ('taker', 'taker')])),
+                ('status', models.CharField(max_length=10, default='not paid', choices=[('paid', 'Paid'), ('not paid', 'Not paid')])),
+                ('bill', models.ForeignKey(to='MosesWebserviceApp.Bill', related_name='bill', null=True)),
+            ],
+            options={
+                'ordering': ('member',),
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
             name='Group',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', primary_key=True, serialize=False, auto_created=True)),
+                ('id', models.AutoField(auto_created=True, primary_key=True, verbose_name='ID', serialize=False)),
                 ('name', models.CharField(max_length=300)),
                 ('image', models.ImageField(null=True, upload_to=MosesWebserviceApp.models.get_unique_image_file_path)),
-                ('status', models.CharField(default='active', max_length=10, choices=[('active', 'Active'), ('inactive', 'Inactive')])),
+                ('status', models.CharField(max_length=10, default='active', choices=[('active', 'Active'), ('inactive', 'Inactive')])),
             ],
             options={
                 'ordering': ('status',),
@@ -44,7 +56,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='GroupUser',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', primary_key=True, serialize=False, auto_created=True)),
+                ('id', models.AutoField(auto_created=True, primary_key=True, verbose_name='ID', serialize=False)),
                 ('administrator', models.BooleanField(default=False)),
                 ('group', models.ForeignKey(to='MosesWebserviceApp.Group', related_name='group')),
             ],
@@ -56,7 +68,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='User',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', primary_key=True, serialize=False, auto_created=True)),
+                ('id', models.AutoField(auto_created=True, primary_key=True, verbose_name='ID', serialize=False)),
                 ('first_name', models.CharField(max_length=50)),
                 ('full_name', models.CharField(max_length=300)),
                 ('email', models.CharField(max_length=254, unique=True)),
@@ -90,21 +102,15 @@ class Migration(migrations.Migration):
             unique_together=set([('creator', 'name')]),
         ),
         migrations.AddField(
-            model_name='bill',
-            name='debtor',
-            field=models.ForeignKey(to='MosesWebserviceApp.User', related_name='debtor'),
+            model_name='billuser',
+            name='member',
+            field=models.ForeignKey(to='MosesWebserviceApp.User', related_name='member'),
             preserve_default=True,
         ),
         migrations.AddField(
             model_name='bill',
             name='group',
             field=models.ForeignKey(to='MosesWebserviceApp.Group'),
-            preserve_default=True,
-        ),
-        migrations.AddField(
-            model_name='bill',
-            name='receiver',
-            field=models.ForeignKey(to='MosesWebserviceApp.User', related_name='receiver'),
             preserve_default=True,
         ),
     ]
