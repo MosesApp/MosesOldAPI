@@ -20,7 +20,7 @@ class BillUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = BillUser
-        fields = ('id', 'bill', 'amount', 'member', 'relation', 'status')
+        fields = ('id', 'bill', 'amount', 'member', 'relation')
 
 
 class BillSerializer(serializers.ModelSerializer):
@@ -31,50 +31,56 @@ class BillSerializer(serializers.ModelSerializer):
         members_data = validated_data.pop('members')
 
         # Validate Bill and Members
-        taker = False
-        debtor = False
+        debtor_list = []
+        taker_list = []
         debtors_total = 0.0
+        takers_total = 0.0
+
         for member in members_data:
             member = list(member.items())
-            if len(member) < 4:
+            if len(member) < 3:
                 raise serializers.ValidationError("A member is composed of four attributes: "
                                                   "member, relation, status and amount")
             if member and \
                member[0][0] == 'amount' and\
                member[1][0] == 'member' and \
-               member[2][0] == 'relation' and \
-               member[3][0] == 'status':
+               member[2][0] == 'relation':
 
                 amount = member[0]
-                memberObj = member[1]
+                member_obj = member[1]
                 relation = member[2]
-                status = member[3]
 
                 if relation[1] == 'taker':
-                    taker = True
-                    if amount[1] or status[1]:
-                        raise serializers.ValidationError("Amount, and status must be null for taker")
+                    taker_list.append(member)
+                    takers_total = takers_total + amount[1]
                 elif relation[1] == 'debtor':
-                    debtor = True
-                    if not amount[1] or not status[1]:
-                        raise serializers.ValidationError("Amount, or status cannot be null for debtor")
+                    debtor_list.append(member)
                     debtors_total = debtors_total + amount[1]
                 else:
                     raise serializers.ValidationError("Bill member should be a taker, or a debtor")
 
-                if relation[1] == 'debtor' and (amount[1] <= 0.0 or amount[1] > validated_data['amount']):
-                    raise serializers.ValidationError("Bill member should be assigned an amount higher than "
-                                                      "zero and lower equal than the total amount")
+                if amount[1] <= 0.0 or amount[1] > validated_data['amount']:
+                    raise serializers.ValidationError("Bill member %s should be assigned an amount higher than "
+                                                      "zero and lower equal the bill's total amount" % member[1][1])
 
-                if not GroupUser.objects.filter(group=validated_data['group'], user=memberObj[1]).exists():
-                    raise serializers.ValidationError("Member %s does not exist in group %s" %
-                                                      (memberObj[1], validated_data['group']))
+                if not GroupUser.objects.filter(group=validated_data['group'], user=member_obj[1]).exists():
+                    raise serializers.ValidationError("Member %s is not in group %s" %
+                                                      (member_obj[1], validated_data['group']))
 
-        if not taker or not debtor:
-            raise serializers.ValidationError("A bill should be composed from at least one taker, and one debtor")
+        for debtor_i in debtor_list:
+            for taker_i in taker_list:
+                if taker_i[1][1] == debtor_i[1][1]:
+                    raise serializers.ValidationError("Member %s cannot be a debtor and taker at the same time"
+                                                      % taker_i[1][1])
 
-        if debtors_total != validated_data['amount']:
-            raise serializers.ValidationError("Debtors summed amount not equal to Bill amount")
+        if not taker_list or not debtor_list:
+            raise serializers.ValidationError("Bill should be composed from at least one taker, and one debtor")
+
+        if takers_total != validated_data['amount']:
+            raise serializers.ValidationError("Takers summed amount must be equal bill value")
+
+        if debtors_total >= validated_data['amount']:
+            raise serializers.ValidationError("Debtors summed amount must be lower than bill amount")
 
         # Save Bill and Members
         bill = Bill.objects.create(**validated_data)
@@ -84,19 +90,18 @@ class BillSerializer(serializers.ModelSerializer):
             if member and \
                 member[0][0] == 'amount' and \
                 member[1][0] == 'member' and \
-                member[2][0] == 'relation' and \
-                member[3][0] == 'status':
+                member[2][0] == 'relation':
 
                 amount = member[0]
-                memberObj = member[1]
+                member_obj = member[1]
                 relation = member[2]
-                status = member[3]
+                status = "not paid"
 
                 bill.members.append(BillUser.objects.create(bill=bill,
                                                             amount=amount[1],
-                                                            member=memberObj[1],
+                                                            member=member_obj[1],
                                                             relation=relation[1],
-                                                            status=status[1]))
+                                                            status=status))
 
         return bill
 
