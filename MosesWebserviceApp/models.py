@@ -51,7 +51,7 @@ class Bill(models.Model):
     description = models.CharField(blank=False, max_length=500)
     group = models.ForeignKey(Group, blank=False)
     receipt_image = models.ImageField(upload_to=get_unique_image_file_path, null=True)
-    amount = models.IntegerField(blank=False)
+    amount = models.FloatField(blank=False)
     currency = models.CharField(blank=False,
                                 default='BR',
                                 max_length=3,
@@ -67,7 +67,7 @@ class Bill(models.Model):
 
 class BillUser(models.Model):
     bill = models.ForeignKey(Bill, blank=False, null=True, related_name='bill')
-    amount = models.IntegerField(blank=False)
+    amount = models.FloatField(blank=False, null=True)
     member = models.ForeignKey(User, blank=False, related_name='member')
     relation = models.CharField(choices=BILL_RELATION,
                                 max_length=10,
