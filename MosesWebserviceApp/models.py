@@ -67,16 +67,16 @@ class Bill(models.Model):
 
 class BillUser(models.Model):
     bill = models.ForeignKey(Bill, blank=False, null=True, related_name='bill')
-    amount = models.IntegerField(blank=False)
+    amount = models.IntegerField(blank=False, null=True)
     member = models.ForeignKey(User, blank=False, related_name='member')
     relation = models.CharField(choices=BILL_RELATION,
                                 max_length=10,
                                 blank=False,
                                 default='debtor')
     status = models.CharField(choices=PAYMENT_STATUS,
-                              default='not paid',
                               max_length=10,
-                              blank=False)
+                              blank=False,
+                              null=True)
 
     def __str__(self):
         return "%s;%s;%s;%s" % (self.bill, self.member, self.relation, self.status)
