@@ -2329,13 +2329,13 @@
       <column name="name" sqlType="varchar" precision="300" scale="0" nullable="false" jdbcType="12"/>
       <column name="description" sqlType="varchar" precision="500" scale="0" nullable="false" jdbcType="12"/>
       <column name="receipt_image" sqlType="varchar" precision="100" scale="0" nullable="true" jdbcType="12"/>
-      <column name="amount" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="amount" sqlType="float8" precision="17" scale="17" nullable="false" jdbcType="8"/>
       <column name="currency" sqlType="varchar" precision="3" scale="0" nullable="false" jdbcType="12"/>
       <column name="deadline" sqlType="timestamptz" precision="35" scale="6" nullable="false" jdbcType="93"/>
       <column name="group_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="MosesWebserviceApp_bill_pkey" columns="id"/>
-      <foreign-key name="MosesW_group_id_590991a888ee945a_fk_MosesWebserviceApp_group_id" columns="group_id" ref-table="MosesWebserviceApp_group" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <exported-key name="MosesWebs_bill_id_798e544d9c6c46d_fk_MosesWebserviceApp_bill_id" table="MosesWebserviceApp_billuser" schema="public" catalog="moses" columns="bill_id"/>
+      <foreign-key name="MosesW_group_id_5971959e65a6519d_fk_MosesWebserviceApp_group_id" columns="group_id" ref-table="MosesWebserviceApp_group" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <exported-key name="MosesWeb_bill_id_35c1657f0c125b34_fk_MosesWebserviceApp_bill_id" table="MosesWebserviceApp_billuser" schema="public" catalog="moses" columns="bill_id"/>
       <index name="moseswebserviceapp_bill_0e939a4f" unique="false" columns="group_id"/>
     </table>
     <table name="MosesWebserviceApp_bill_id_seq" schema="public" catalog="moses" type="SEQUENCE">
@@ -2352,14 +2352,14 @@
     </table>
     <table name="MosesWebserviceApp_billuser" schema="public" catalog="moses" type="TABLE">
       <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnIk1vc2VzV2Vic2VydmljZUFwcF9iaWxsdXNlcl9pZF9zZXEiJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
-      <column name="amount" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="amount" sqlType="float8" precision="17" scale="17" nullable="true" jdbcType="8"/>
       <column name="relation" sqlType="varchar" precision="10" scale="0" nullable="false" jdbcType="12"/>
       <column name="status" sqlType="varchar" precision="10" scale="0" nullable="false" jdbcType="12"/>
       <column name="bill_id" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="member_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="MosesWebserviceApp_billuser_pkey" columns="id"/>
-      <foreign-key name="MosesWebs_bill_id_798e544d9c6c46d_fk_MosesWebserviceApp_bill_id" columns="bill_id" ref-table="MosesWebserviceApp_bill" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <foreign-key name="MosesW_member_id_7290a726bb2b1ab8_fk_MosesWebserviceApp_user_id" columns="member_id" ref-table="MosesWebserviceApp_user" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="MosesWeb_bill_id_35c1657f0c125b34_fk_MosesWebserviceApp_bill_id" columns="bill_id" ref-table="MosesWebserviceApp_bill" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="MosesW_member_id_59d0da46e980e85c_fk_MosesWebserviceApp_user_id" columns="member_id" ref-table="MosesWebserviceApp_user" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
       <index name="moseswebserviceapp_billuser_88bce984" unique="false" columns="bill_id"/>
       <index name="moseswebserviceapp_billuser_b5c3e75b" unique="false" columns="member_id"/>
     </table>
@@ -2382,10 +2382,10 @@
       <column name="status" sqlType="varchar" precision="10" scale="0" nullable="false" jdbcType="12"/>
       <column name="creator_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="MosesWebserviceApp_group_pkey" columns="id"/>
-      <foreign-key name="Moses_creator_id_765a8f44b5262b57_fk_MosesWebserviceApp_user_id" columns="creator_id" ref-table="MosesWebserviceApp_user" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <exported-key name="MosesW_group_id_590991a888ee945a_fk_MosesWebserviceApp_group_id" table="MosesWebserviceApp_bill" schema="public" catalog="moses" columns="group_id"/>
-      <exported-key name="MosesWe_group_id_46f59ee0a6c7ff5_fk_MosesWebserviceApp_group_id" table="MosesWebserviceApp_groupuser" schema="public" catalog="moses" columns="group_id"/>
-      <index name="MosesWebserviceApp_group_creator_id_7fa8cec0593243fd_uniq" unique="true" columns="creator_id,name"/>
+      <foreign-key name="Moses_creator_id_7d02cd18d44094cd_fk_MosesWebserviceApp_user_id" columns="creator_id" ref-table="MosesWebserviceApp_user" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <exported-key name="MosesW_group_id_5971959e65a6519d_fk_MosesWebserviceApp_group_id" table="MosesWebserviceApp_bill" schema="public" catalog="moses" columns="group_id"/>
+      <exported-key name="MosesW_group_id_1d565d037cb7dbf7_fk_MosesWebserviceApp_group_id" table="MosesWebserviceApp_groupuser" schema="public" catalog="moses" columns="group_id"/>
+      <index name="MosesWebserviceApp_group_creator_id_a0c40dc2efba8e5_uniq" unique="true" columns="creator_id,name"/>
       <index name="moseswebserviceapp_group_3700153c" unique="false" columns="creator_id"/>
     </table>
     <table name="MosesWebserviceApp_group_id_seq" schema="public" catalog="moses" type="SEQUENCE">
@@ -2406,9 +2406,9 @@
       <column name="group_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="user_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="MosesWebserviceApp_groupuser_pkey" columns="id"/>
-      <foreign-key name="MosesWe_group_id_46f59ee0a6c7ff5_fk_MosesWebserviceApp_group_id" columns="group_id" ref-table="MosesWebserviceApp_group" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <foreign-key name="MosesWeb_user_id_2a87e037612a3c56_fk_MosesWebserviceApp_user_id" columns="user_id" ref-table="MosesWebserviceApp_user" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <index name="MosesWebserviceApp_groupuser_user_id_68cf9903dedfdb0a_uniq" unique="true" columns="user_id,group_id"/>
+      <foreign-key name="MosesW_group_id_1d565d037cb7dbf7_fk_MosesWebserviceApp_group_id" columns="group_id" ref-table="MosesWebserviceApp_group" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="MosesWeb_user_id_5880814a16fb6305_fk_MosesWebserviceApp_user_id" columns="user_id" ref-table="MosesWebserviceApp_user" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="MosesWebserviceApp_groupuser_user_id_517f6ee7968f9358_uniq" unique="true" columns="user_id,group_id"/>
       <index name="moseswebserviceapp_groupuser_0e939a4f" unique="false" columns="group_id"/>
       <index name="moseswebserviceapp_groupuser_e8701ad4" unique="false" columns="user_id"/>
     </table>
@@ -2433,9 +2433,9 @@
       <column name="locale" sqlType="varchar" precision="5" scale="0" nullable="false" jdbcType="12"/>
       <column name="timezone" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="MosesWebserviceApp_user_pkey" columns="id"/>
-      <exported-key name="MosesW_member_id_7290a726bb2b1ab8_fk_MosesWebserviceApp_user_id" table="MosesWebserviceApp_billuser" schema="public" catalog="moses" columns="member_id"/>
-      <exported-key name="Moses_creator_id_765a8f44b5262b57_fk_MosesWebserviceApp_user_id" table="MosesWebserviceApp_group" schema="public" catalog="moses" columns="creator_id"/>
-      <exported-key name="MosesWeb_user_id_2a87e037612a3c56_fk_MosesWebserviceApp_user_id" table="MosesWebserviceApp_groupuser" schema="public" catalog="moses" columns="user_id"/>
+      <exported-key name="MosesW_member_id_59d0da46e980e85c_fk_MosesWebserviceApp_user_id" table="MosesWebserviceApp_billuser" schema="public" catalog="moses" columns="member_id"/>
+      <exported-key name="Moses_creator_id_7d02cd18d44094cd_fk_MosesWebserviceApp_user_id" table="MosesWebserviceApp_group" schema="public" catalog="moses" columns="creator_id"/>
+      <exported-key name="MosesWeb_user_id_5880814a16fb6305_fk_MosesWebserviceApp_user_id" table="MosesWebserviceApp_groupuser" schema="public" catalog="moses" columns="user_id"/>
       <index name="MosesWebserviceApp_user_email_key" unique="true" columns="email"/>
       <index name="MosesWebserviceApp_user_facebook_id_key" unique="true" columns="facebook_id"/>
     </table>
@@ -2455,8 +2455,8 @@
       <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnYXV0aF9ncm91cF9pZF9zZXEnOjpyZWdjbGFzcyk=" autoIncrement="true"/>
       <column name="name" sqlType="varchar" precision="80" scale="0" nullable="false" jdbcType="12"/>
       <primary-key name="auth_group_pkey" columns="id"/>
-      <exported-key name="auth_group_permissio_group_id_6f3ebbe861c833ae_fk_auth_group_id" table="auth_group_permissions" schema="public" catalog="moses" columns="group_id"/>
-      <exported-key name="auth_user_groups_group_id_5cb677e116eeda2d_fk_auth_group_id" table="auth_user_groups" schema="public" catalog="moses" columns="group_id"/>
+      <exported-key name="auth_group_permissio_group_id_26bfb5a8196df402_fk_auth_group_id" table="auth_group_permissions" schema="public" catalog="moses" columns="group_id"/>
+      <exported-key name="auth_user_groups_group_id_1dd43440275cab15_fk_auth_group_id" table="auth_user_groups" schema="public" catalog="moses" columns="group_id"/>
       <index name="auth_group_name_key" unique="true" columns="name"/>
     </table>
     <table name="auth_group_id_seq" schema="public" catalog="moses" type="SEQUENCE">
@@ -2476,8 +2476,8 @@
       <column name="group_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="permission_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="auth_group_permissions_pkey" columns="id"/>
-      <foreign-key name="auth_group_permissio_group_id_6f3ebbe861c833ae_fk_auth_group_id" columns="group_id" ref-table="auth_group" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <foreign-key name="auth_group_permission_id_74977684fe056c02_fk_auth_permission_id" columns="permission_id" ref-table="auth_permission" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="auth_group_permissio_group_id_26bfb5a8196df402_fk_auth_group_id" columns="group_id" ref-table="auth_group" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="auth_group_permission_id_6b16459a391b14c9_fk_auth_permission_id" columns="permission_id" ref-table="auth_permission" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
       <index name="auth_group_permissions_group_id_permission_id_key" unique="true" columns="group_id,permission_id"/>
       <index name="auth_group_permissions_0e939a4f" unique="false" columns="group_id"/>
       <index name="auth_group_permissions_8373b171" unique="false" columns="permission_id"/>
@@ -2500,9 +2500,9 @@
       <column name="content_type_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="codename" sqlType="varchar" precision="100" scale="0" nullable="false" jdbcType="12"/>
       <primary-key name="auth_permission_pkey" columns="id"/>
-      <foreign-key name="auth_content_type_id_6090547beed1d3c0_fk_django_content_type_id" columns="content_type_id" ref-table="django_content_type" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <exported-key name="auth_group_permission_id_74977684fe056c02_fk_auth_permission_id" table="auth_group_permissions" schema="public" catalog="moses" columns="permission_id"/>
-      <exported-key name="auth_user__permission_id_72cdd1b183c85d1f_fk_auth_permission_id" table="auth_user_user_permissions" schema="public" catalog="moses" columns="permission_id"/>
+      <foreign-key name="auth_content_type_id_6504106b21c54c24_fk_django_content_type_id" columns="content_type_id" ref-table="django_content_type" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <exported-key name="auth_group_permission_id_6b16459a391b14c9_fk_auth_permission_id" table="auth_group_permissions" schema="public" catalog="moses" columns="permission_id"/>
+      <exported-key name="auth_user_u_permission_id_7440928848bc227_fk_auth_permission_id" table="auth_user_user_permissions" schema="public" catalog="moses" columns="permission_id"/>
       <index name="auth_permission_content_type_id_codename_key" unique="true" columns="content_type_id,codename"/>
       <index name="auth_permission_417f1b1c" unique="false" columns="content_type_id"/>
     </table>
@@ -2531,9 +2531,9 @@
       <column name="is_active" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
       <column name="date_joined" sqlType="timestamptz" precision="35" scale="6" nullable="false" jdbcType="93"/>
       <primary-key name="auth_user_pkey" columns="id"/>
-      <exported-key name="auth_user_groups_user_id_6f5b93a2a3d7fe78_fk_auth_user_id" table="auth_user_groups" schema="public" catalog="moses" columns="user_id"/>
-      <exported-key name="auth_user_user_permiss_user_id_4510078f49f00672_fk_auth_user_id" table="auth_user_user_permissions" schema="public" catalog="moses" columns="user_id"/>
-      <exported-key name="django_admin_log_user_id_2467ca2d873de8a8_fk_auth_user_id" table="django_admin_log" schema="public" catalog="moses" columns="user_id"/>
+      <exported-key name="auth_user_groups_user_id_66482a0a183b5ef_fk_auth_user_id" table="auth_user_groups" schema="public" catalog="moses" columns="user_id"/>
+      <exported-key name="auth_user_user_permiss_user_id_238c1cf2a155daec_fk_auth_user_id" table="auth_user_user_permissions" schema="public" catalog="moses" columns="user_id"/>
+      <exported-key name="django_admin_log_user_id_1822c7d8e59d5da8_fk_auth_user_id" table="django_admin_log" schema="public" catalog="moses" columns="user_id"/>
       <index name="auth_user_username_key" unique="true" columns="username"/>
     </table>
     <table name="auth_user_groups" schema="public" catalog="moses" type="TABLE">
@@ -2541,8 +2541,8 @@
       <column name="user_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="group_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="auth_user_groups_pkey" columns="id"/>
-      <foreign-key name="auth_user_groups_group_id_5cb677e116eeda2d_fk_auth_group_id" columns="group_id" ref-table="auth_group" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <foreign-key name="auth_user_groups_user_id_6f5b93a2a3d7fe78_fk_auth_user_id" columns="user_id" ref-table="auth_user" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="auth_user_groups_group_id_1dd43440275cab15_fk_auth_group_id" columns="group_id" ref-table="auth_group" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="auth_user_groups_user_id_66482a0a183b5ef_fk_auth_user_id" columns="user_id" ref-table="auth_user" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
       <index name="auth_user_groups_user_id_group_id_key" unique="true" columns="user_id,group_id"/>
       <index name="auth_user_groups_0e939a4f" unique="false" columns="group_id"/>
       <index name="auth_user_groups_e8701ad4" unique="false" columns="user_id"/>
@@ -2576,8 +2576,8 @@
       <column name="user_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="permission_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="auth_user_user_permissions_pkey" columns="id"/>
-      <foreign-key name="auth_user__permission_id_72cdd1b183c85d1f_fk_auth_permission_id" columns="permission_id" ref-table="auth_permission" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <foreign-key name="auth_user_user_permiss_user_id_4510078f49f00672_fk_auth_user_id" columns="user_id" ref-table="auth_user" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="auth_user_u_permission_id_7440928848bc227_fk_auth_permission_id" columns="permission_id" ref-table="auth_permission" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="auth_user_user_permiss_user_id_238c1cf2a155daec_fk_auth_user_id" columns="user_id" ref-table="auth_user" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
       <index name="auth_user_user_permissions_user_id_permission_id_key" unique="true" columns="user_id,permission_id"/>
       <index name="auth_user_user_permissions_8373b171" unique="false" columns="permission_id"/>
       <index name="auth_user_user_permissions_e8701ad4" unique="false" columns="user_id"/>
@@ -2604,8 +2604,8 @@
       <column name="content_type_id" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="user_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="django_admin_log_pkey" columns="id"/>
-      <foreign-key name="django_admin_log_user_id_2467ca2d873de8a8_fk_auth_user_id" columns="user_id" ref-table="auth_user" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
-      <foreign-key name="djan_content_type_id_2f97470329027e51_fk_django_content_type_id" columns="content_type_id" ref-table="django_content_type" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="django_admin_log_user_id_1822c7d8e59d5da8_fk_auth_user_id" columns="user_id" ref-table="auth_user" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="djan_content_type_id_24e41a32f57e23ae_fk_django_content_type_id" columns="content_type_id" ref-table="django_content_type" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
       <index name="django_admin_log_417f1b1c" unique="false" columns="content_type_id"/>
       <index name="django_admin_log_e8701ad4" unique="false" columns="user_id"/>
     </table>
@@ -2627,9 +2627,9 @@
       <column name="app_label" sqlType="varchar" precision="100" scale="0" nullable="false" jdbcType="12"/>
       <column name="model" sqlType="varchar" precision="100" scale="0" nullable="false" jdbcType="12"/>
       <primary-key name="django_content_type_pkey" columns="id"/>
-      <exported-key name="auth_content_type_id_6090547beed1d3c0_fk_django_content_type_id" table="auth_permission" schema="public" catalog="moses" columns="content_type_id"/>
-      <exported-key name="djan_content_type_id_2f97470329027e51_fk_django_content_type_id" table="django_admin_log" schema="public" catalog="moses" columns="content_type_id"/>
-      <index name="django_content_type_app_label_56d0236c71739af3_uniq" unique="true" columns="app_label,model"/>
+      <exported-key name="auth_content_type_id_6504106b21c54c24_fk_django_content_type_id" table="auth_permission" schema="public" catalog="moses" columns="content_type_id"/>
+      <exported-key name="djan_content_type_id_24e41a32f57e23ae_fk_django_content_type_id" table="django_admin_log" schema="public" catalog="moses" columns="content_type_id"/>
+      <index name="django_content_type_app_label_5becea2436148443_uniq" unique="true" columns="app_label,model"/>
     </table>
     <table name="django_content_type_id_seq" schema="public" catalog="moses" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>

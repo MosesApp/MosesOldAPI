@@ -82,7 +82,7 @@ class BillSerializer(serializers.ModelSerializer):
                                                    status="not paid"))
                     else:
                         raise serializers.ValidationError("A member is composed of three attributes: "
-                                                  "member, relation and amount (if relation=='taker')")
+                                                        "member, relation and amount (if relation=='taker')")
             else:
                 raise serializers.ValidationError("A member is composed of three attributes: "
                                                   "member, relation and amount (if relation=='taker')")
@@ -113,6 +113,8 @@ class BillSerializer(serializers.ModelSerializer):
             bill_user.bill = bill
             if bill_user.relation == "debtor":
                 bill_user.amount = debtor_val
+            elif bill_user.relation == "taker":
+                bill_user.amount -= debtor_val
             bill_user.save()
             bill.members.append(bill_user)
 
