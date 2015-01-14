@@ -136,7 +136,7 @@ class BillUserSerializerUser(serializers.ModelSerializer):
 
     class Meta:
         model = BillUser
-        fields = ('id', 'bill', 'member', 'relation', 'status')
+        fields = ('id', 'bill', 'amount', 'member', 'relation', 'status')
 
 
 class ReadGroupUserSerializerUser(serializers.ModelSerializer):
