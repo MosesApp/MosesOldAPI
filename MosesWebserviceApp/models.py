@@ -53,7 +53,7 @@ class Bill(models.Model):
     receipt_image = models.ImageField(upload_to=get_unique_image_file_path, null=True)
     amount = models.FloatField(blank=False)
     currency = models.CharField(blank=False,
-                                default='BR',
+                                default='CA',
                                 max_length=3,
                                 choices=PAYMENT_CURRENCY)
     deadline = models.DateTimeField(blank=False)
