@@ -11,9 +11,11 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
 class GroupUserSerializer(serializers.ModelSerializer):
 
+    user_facebook = serializers.CharField(max_length=20)
+
     class Meta:
         model = GroupUser
-        fields = ('id', 'user', 'administrator')
+        fields = ('id', 'user_facebook', 'administrator')
 
 
 class CreateGroupSerializer(serializers.ModelSerializer):
@@ -36,9 +38,12 @@ class CreateGroupSerializer(serializers.ModelSerializer):
                         administrator = False
                     else:
                         administrator = member[1][1]
-                    group_user = GroupUser(user=user, group=group, administrator=administrator)
-                    group_user.save()
-                    group.members.append(group_user)
+                    userObj = User.objects.filter(facebook_id=user)
+                    if user:
+                        group_user = GroupUser(user=userObj[0], group=group, administrator=administrator)
+                        group_user.user_facebook = user
+                        group_user.save()
+                        group.members.append(group_user)
 
         return group
 
