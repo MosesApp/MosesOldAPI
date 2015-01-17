@@ -9,6 +9,44 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id', 'first_name', 'full_name', 'email', 'facebook_id', 'locale', 'timezone')
 
 
+class GroupUserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = GroupUser
+        fields = ('id', 'user', 'administrator')
+
+
+class CreateGroupSerializer(serializers.ModelSerializer):
+
+    members = GroupUserSerializer(many=True)
+
+    def create(self, validated_data):
+        members_data = validated_data.pop('members')
+
+        # Save Group and Members
+        group = Group.objects.create(**validated_data)
+        GroupUser.objects.create(user=validated_data['creator'], group=group, administrator=True)
+        group.members = []
+        for member in members_data:
+            member = list(member.items())
+            if len(member) >= 1:
+                user = member[0][1]
+                if user and validated_data['creator'] != user:
+                    if len(member) == 1:
+                        administrator = False
+                    else:
+                        administrator = member[1][1]
+                    group_user = GroupUser(user=user, group=group, administrator=administrator)
+                    group_user.save()
+                    group.members.append(group_user)
+
+        return group
+
+    class Meta:
+        model = Group
+        fields = ('id', 'name', 'image', 'creator', 'members')
+
+
 class GroupSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -39,6 +77,7 @@ class BillSerializer(serializers.ModelSerializer):
 
         for member in members_data:
             member = list(member.items())
+            print(member)
             # Taker rules
             if len(member) == 3:
                 if member[0][0] == 'amount' and\
@@ -63,7 +102,7 @@ class BillSerializer(serializers.ModelSerializer):
                                                    status="not paid"))
                     else:
                         raise serializers.ValidationError("A member is composed of three attributes: "
-                                                  "member, relation and amount (if relation=='taker')")
+                                                          "member, relation and amount (if relation=='taker')")
             # Debtor rules
             elif len(member) == 2:
 
@@ -82,7 +121,7 @@ class BillSerializer(serializers.ModelSerializer):
                                                    status="not paid"))
                     else:
                         raise serializers.ValidationError("A member is composed of three attributes: "
-                                                        "member, relation and amount (if relation=='taker')")
+                                                          "member, relation and amount (if relation=='taker')")
             else:
                 raise serializers.ValidationError("A member is composed of three attributes: "
                                                   "member, relation and amount (if relation=='taker')")

@@ -1,6 +1,7 @@
 from MosesWebserviceApp.models import User, Group, Bill, BillUser, GroupUser
 from MosesWebserviceApp.serializers import UserSerializer, GroupSerializer, BillSerializer,\
-    ReadGroupUserSerializerUser, ReadGroupUserSerializerGroup, WriteGroupUserSerializer, BillUserSerializerUser
+    ReadGroupUserSerializerUser, ReadGroupUserSerializerGroup, WriteGroupUserSerializer, BillUserSerializerUser, \
+    CreateGroupSerializer
 from rest_framework import generics, permissions
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -12,7 +13,8 @@ from MosesWebservice.settings import SERVER_URL
 def api_root(request, format=None):
     return Response({
         '[CRUD] Users': reverse('user-crud', request=request, format=format),
-        '[CRUD] Group': reverse('group-crud', request=request, format=format),
+        '[READ] Group': reverse('group-read', request=request, format=format),
+        '[CREATE] Group': reverse('group-create', request=request, format=format),
         '[CREATE] Group_User': reverse('group_user-create', request=request, format=format),
         '[READ] User groups': SERVER_URL + 'group_user_user/$id',
         '[READ] Group users': SERVER_URL + 'group_user_group/$id',
@@ -37,14 +39,19 @@ class UserDetail(generics.RetrieveAPIView):
 
 
 # Group CRUD
-class GroupList(generics.ListCreateAPIView):
+class GroupCreate(generics.CreateAPIView):
     queryset = Group.objects.all()
-    serializer_class = GroupSerializer
+    serializer_class = CreateGroupSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
     def perform_create(self, serializer):
-        instance = serializer.save()
-        GroupUser(user=instance.creator, group=instance, administrator=True).save()
+        serializer.save()
+
+
+class GroupList(generics.ListAPIView):
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
+    permission_classes = (permissions.IsAuthenticated,)
 
 
 # Bill Create

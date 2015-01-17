@@ -16,7 +16,10 @@ urlpatterns = format_suffix_patterns(patterns('MosesWebserviceApp.views',
 
     url(r'^groups/$',
         views.GroupList.as_view(),
-        name='group-crud'),
+        name='group-read'),
+    url(r'^group/$',
+        views.GroupCreate.as_view(),
+        name='group-create'),
 
     url(r'^bill/$',
         views.BillCreate.as_view(),

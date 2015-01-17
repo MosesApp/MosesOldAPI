@@ -17,7 +17,7 @@ PAYMENT_STATUS = (('paid', 'Paid'), ('not paid', 'Not paid'))
 PAYMENT_CURRENCY = (('CA', 'CA'), ('US', 'US'), ('BR', 'BR'))
 BILL_RELATION = (('debtor', 'debtor'), ('taker', 'taker'))
 
-SERVER_URL = 'http://mosesapp.me/'
+SERVER_URL = 'http://localhost:8000/'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
