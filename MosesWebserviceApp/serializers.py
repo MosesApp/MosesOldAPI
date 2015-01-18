@@ -39,7 +39,7 @@ class CreateGroupSerializer(serializers.ModelSerializer):
                     else:
                         administrator = member[1][1]
                     user_obj = User.objects.filter(facebook_id=user)
-                    if user:
+                    if user_obj:
                         group_user = GroupUser(user=user_obj[0], group=group, administrator=administrator)
                         group_user.user_facebook = user
                         group_user.save()
