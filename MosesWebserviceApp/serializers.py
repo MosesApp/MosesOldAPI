@@ -45,6 +45,9 @@ class CreateGroupSerializer(serializers.ModelSerializer):
                         group_user.save()
                         group.members.append(group_user)
 
+        if not group.members:
+            raise serializers.ValidationError("A group must contain at least one member besides it's creator")
+
         return group
 
     class Meta:
@@ -82,7 +85,6 @@ class BillSerializer(serializers.ModelSerializer):
 
         for member in members_data:
             member = list(member.items())
-            print(member)
             # Taker rules
             if len(member) == 3:
                 if member[0][0] == 'amount' and\
