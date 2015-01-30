@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from MosesWebserviceApp.models import User, Bill, BillUser, Group, GroupUser
+from drf_extra_fields.fields import Base64ImageField
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -20,6 +21,7 @@ class GroupUserSerializer(serializers.ModelSerializer):
 
 class CreateGroupSerializer(serializers.ModelSerializer):
 
+    image = Base64ImageField(required=False)
     members = GroupUserSerializer(many=True)
 
     def create(self, validated_data):
