@@ -21,7 +21,7 @@ class GroupUserSerializer(serializers.ModelSerializer):
 
 class CreateGroupSerializer(serializers.ModelSerializer):
 
-    image = Base64ImageField(max_length=None, use_url=True,)
+    #image = Base64ImageField(max_length=None, use_url=True,)
     members = GroupUserSerializer(many=True)
 
     def create(self, validated_data):
