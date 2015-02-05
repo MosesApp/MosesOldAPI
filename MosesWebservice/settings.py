@@ -11,15 +11,12 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
-STATIC_ROOT = os.path.join(BASE_DIR, "static/")
-
 
 GROUP_STATUS = (('active', 'Active'), ('inactive', 'Inactive'))
 PAYMENT_STATUS = (('paid', 'Paid'), ('not paid', 'Not paid'))
 PAYMENT_CURRENCY = (('CA', 'CA'), ('US', 'US'), ('BR', 'BR'))
 BILL_RELATION = (('debtor', 'debtor'), ('taker', 'taker'))
 
-SERVER_URL = 'http://mosesapp.me/'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -107,6 +104,15 @@ STATICFILES_DIRS = (
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+
+PRODUCTION = False
+if PRODUCTION:
+    NGINX_PORT = '8000'
+    SERVER_URL = 'http://mosesapp.me/'
+    STATIC_ROOT = SERVER_URL + ':' + NGINX_PORT + STATIC_URL
+else:
+    SERVER_URL = 'http://localhost:8000/'
+    STATIC_ROOT = BASE_DIR + STATIC_URL
 
 MEDIA_URL = '/media/'
 
