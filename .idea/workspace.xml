@@ -16,7 +16,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CreatePatchCommitExecutor">
-    <option name="PATCH_PATH" value="" />
+    <option name="PATCH_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
@@ -45,8 +45,8 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MosesWebservice/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.08038147" vertical-offset="2830" max-vertical-offset="3564">
-              <caret line="107" column="14" selection-start-line="107" selection-start-column="14" selection-end-line="107" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.5217984" vertical-offset="2830" max-vertical-offset="3564">
+              <caret line="119" column="17" selection-start-line="119" selection-start-column="17" selection-end-line="119" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -510,12 +510,6 @@
       <option name="number" value="Default" />
       <updated>1419182781112</updated>
     </task>
-    <task id="LOCAL-00008" summary="Fix groups and group_user services">
-      <created>1419820473166</created>
-      <option name="number" value="00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1419820473166</updated>
-    </task>
     <task id="LOCAL-00009" summary="Fix groups and group_user services">
       <created>1419820478335</created>
       <option name="number" value="00009" />
@@ -804,12 +798,18 @@
       <option name="project" value="LOCAL" />
       <updated>1423098930144</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="Add support to static resource">
+      <created>1423098937737</created>
+      <option name="number" value="00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1423098937737</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1056" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1224,8 +1224,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MosesWebservice/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.08038147" vertical-offset="2830" max-vertical-offset="3564">
-          <caret line="107" column="14" selection-start-line="107" selection-start-column="14" selection-end-line="107" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.5217984" vertical-offset="2830" max-vertical-offset="3564">
+          <caret line="119" column="17" selection-start-line="119" selection-start-column="17" selection-end-line="119" selection-end-column="17" />
           <folding />
         </state>
       </provider>
