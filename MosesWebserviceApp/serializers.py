@@ -1,6 +1,6 @@
-from rest_framework import serializers
 from MosesWebserviceApp.models import User, Bill, BillUser, Group, GroupUser
-from MosesWebserviceApp import Base64ImageField
+from rest_framework import serializers
+from MosesWebserviceApp.fields import Base64ImageField
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -21,7 +21,7 @@ class GroupUserSerializer(serializers.ModelSerializer):
 
 class CreateGroupSerializer(serializers.ModelSerializer):
 
-    #image = Base64ImageField(max_length=None, use_url=True,)
+    image = Base64ImageField(required=False)
     members = GroupUserSerializer(many=True)
 
     def create(self, validated_data):

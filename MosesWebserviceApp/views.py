@@ -13,6 +13,7 @@ from MosesWebservice.settings import SERVER_URL
 def api_root(request, format=None):
     return Response({
         '[CRUD] Users': reverse('user-crud', request=request, format=format),
+        '[READ] User': SERVER_URL + 'user/$id',
         '[READ] Group': reverse('group-read', request=request, format=format),
         '[CREATE] Group': reverse('group-create', request=request, format=format),
         '[CREATE] Group_User': reverse('group_user-create', request=request, format=format),
@@ -31,11 +32,14 @@ class UserList(generics.ListCreateAPIView):
     permission_classes = (permissions.IsAuthenticated,)
 
 
-class UserDetail(generics.RetrieveAPIView):
-    queryset = User.objects.all()
-    lookup_field = 'facebook_id'
+class UserDetail(generics.ListAPIView):
     serializer_class = UserSerializer
     permission_classes = (permissions.IsAuthenticated,)
+
+    def get_queryset(self):
+        facebook_id_list = self.kwargs['pk'].split("&")
+        user_list = User.objects.filter(facebook_id__in=facebook_id_list)
+        return user_list
 
 
 # Group CRUD
