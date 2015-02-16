@@ -103,7 +103,7 @@ STATICFILES_DIRS = (
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
-PRODUCTION = False
+PRODUCTION = True
 
 if PRODUCTION:
     SERVER_URL = 'http://mosesapp.me/'
