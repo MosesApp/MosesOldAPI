@@ -58,7 +58,7 @@ class CreateGroupSerializer(serializers.ModelSerializer):
                     group.members.append(group_user)
 
         if not group.members:
-            raise serializers.ValidationError("A group must contain at least one member besides it's creator")
+            raise serializers.ValidationError("Check the group members facebook_id for invalid ones")
 
         return group
 
