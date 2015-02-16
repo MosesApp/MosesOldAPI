@@ -27,6 +27,16 @@ class CreateGroupSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         members_data = validated_data.pop('members')
 
+        one_valid_member = False
+        for member in members_data:
+            member = list(member.items())
+            user_facebook = member[0][1]
+            if user_facebook and validated_data['creator'].facebook_id != user_facebook:
+                one_valid_member = True
+
+        if not one_valid_member:
+            raise serializers.ValidationError("A group must contain at least one member besides it's creator")
+
         # Save Group and Members
         group = Group.objects.create(**validated_data)
         GroupUser.objects.create(user=validated_data['creator'], group=group, administrator=True)
@@ -36,17 +46,16 @@ class CreateGroupSerializer(serializers.ModelSerializer):
             member = list(member.items())
             if len(member) >= 1:
                 user_facebook = member[0][1]
-                if user_facebook and validated_data['creator'].facebook_id != user_facebook:
-                    if len(member) == 1:
-                        administrator = False
-                    else:
-                        administrator = member[1][1]
-                    user_obj = User.objects.filter(facebook_id=user_facebook)
-                    if user_obj:
-                        group_user = GroupUser(user=user_obj[0], group=group, administrator=administrator)
-                        group_user.user_facebook = user_facebook
-                        group_user.save()
-                        group.members.append(group_user)
+                if len(member) == 1:
+                    administrator = False
+                else:
+                    administrator = member[1][1]
+                user_obj = User.objects.filter(facebook_id=user_facebook)
+                if user_obj:
+                    group_user = GroupUser(user=user_obj[0], group=group, administrator=administrator)
+                    group_user.user_facebook = user_facebook
+                    group_user.save()
+                    group.members.append(group_user)
 
         if not group.members:
             raise serializers.ValidationError("A group must contain at least one member besides it's creator")
