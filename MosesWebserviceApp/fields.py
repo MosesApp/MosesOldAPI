@@ -37,9 +37,12 @@ class Base64ImageField(ImageField):
             print(base64_data)
             try:
                 decoded_file = base64.b64decode(base64_data)
+                print(decoded_file)
+                print("\n----\n")
             except TypeError:
                 raise ValidationError(_("Please upload a valid image. --> " + base64_data))
             print(decoded_file)
+            print("foi")
             # Generate file name:
             file_name = str(uuid.uuid4())[:12]  # 12 characters are more than enough.
             # Get the file name extension:
