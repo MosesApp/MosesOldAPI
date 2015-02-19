@@ -11,7 +11,7 @@ def get_unique_image_file_path(instance=None, filename='dummy.jpg'):
     """
     ext = filename.split('.')[-1]
     filename = "%s.%s" % (uuid.uuid4(), ext)
-    return MEDIA_ROOT + filename
+    return 'testeeee' + filename
 
 
 class User(models.Model):
