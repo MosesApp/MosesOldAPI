@@ -115,11 +115,11 @@ else:
 
 STATIC_URL = NGINX_SERVER_URL + '/static/'
 
-MEDIA_URL = '/media/'
+MEDIA_URL = '/'
 
 MEDIA_ROOT = (PROJECT_ROOT + os.sep)
 
-IMAGE_FOLDER = 'images'
+IMAGE_FOLDER = 'media'
 
 REST_FRAMEWORK = {
     'PAGINATE_BY': 10
