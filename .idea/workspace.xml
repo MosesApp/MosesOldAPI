@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55083824-7ff8-419c-aad5-4b0620bb7542" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MosesWebserviceApp/models.py" afterPath="$PROJECT_DIR$/MosesWebserviceApp/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MosesWebservice/settings.py" afterPath="$PROJECT_DIR$/MosesWebservice/settings.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MosesWebservice.iws" />
@@ -38,7 +34,7 @@
         <entry file="file://$PROJECT_DIR$/MosesWebserviceApp/models.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2781">
-              <caret line="12" column="44" selection-start-line="12" selection-start-column="44" selection-end-line="12" selection-end-column="44" />
+              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -49,8 +45,8 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MosesWebservice/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="7.4582443" vertical-offset="0" max-vertical-offset="3753">
-              <caret line="129" column="0" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
+            <state vertical-scroll-proportion="-5.1862955" vertical-offset="3151" max-vertical-offset="3753">
+              <caret line="27" column="12" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -59,7 +55,7 @@
       <file leaf-file-name="fields.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MosesWebserviceApp/fields.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1674">
+            <state vertical-scroll-proportion="0.0" vertical-offset="108" max-vertical-offset="1674">
               <caret line="22" column="35" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
@@ -159,6 +155,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="images" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MosesWebservice" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MosesWebservice" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MosesWebserviceApp" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -463,18 +473,6 @@
       <option name="number" value="Default" />
       <updated>1419182781112</updated>
     </task>
-    <task id="LOCAL-00041" summary="Refactor Bill service">
-      <created>1421277047207</created>
-      <option name="number" value="00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1421277047207</updated>
-    </task>
-    <task id="LOCAL-00042" summary="Refactor Bill service">
-      <created>1421465155832</created>
-      <option name="number" value="00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1421465155832</updated>
-    </task>
     <task id="LOCAL-00043" summary="Refactor Bill service">
       <created>1421530865332</created>
       <option name="number" value="00043" />
@@ -757,7 +755,19 @@
       <option name="project" value="LOCAL" />
       <updated>1424365729434</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="Fix settings properties">
+      <created>1424367202765</created>
+      <option name="number" value="00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1424367202765</updated>
+    </task>
+    <task id="LOCAL-00091" summary="Fix settings properties">
+      <created>1424367523880</created>
+      <option name="number" value="00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1424367523880</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1212,7 +1222,7 @@
     <entry file="file://$PROJECT_DIR$/MosesWebserviceApp/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2781">
-          <caret line="12" column="44" selection-start-line="12" selection-start-column="44" selection-end-line="12" selection-end-column="44" />
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
           </folding>
@@ -1221,8 +1231,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/MosesWebservice/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="7.4582443" vertical-offset="0" max-vertical-offset="3753">
-          <caret line="129" column="0" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
+        <state vertical-scroll-proportion="-5.1862955" vertical-offset="3151" max-vertical-offset="3753">
+          <caret line="27" column="12" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
           <folding />
         </state>
       </provider>
