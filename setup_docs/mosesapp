@@ -19,7 +19,7 @@ server {
 
     # Django media
     location /media  {
-        alias /home/admin/Moses-Webservice/media;  # your Django project's media files - amend as required
+        alias /home/admin/Moses-Webservice/media/images;  # your Django project's media files - amend as required
     }
 
     location /static {
