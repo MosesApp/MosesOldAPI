@@ -103,7 +103,7 @@ STATICFILES_DIRS = (
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
-PRODUCTION = True
+PRODUCTION = False
 
 if PRODUCTION:
     SERVER_URL = 'http://mosesapp.me/'
@@ -115,7 +115,7 @@ else:
 
 STATIC_URL = NGINX_SERVER_URL + '/static/'
 
-MEDIA_URL = '/'
+MEDIA_URL = '/media/'
 
 MEDIA_ROOT = (PROJECT_ROOT + os.sep)
 
