@@ -36,7 +36,7 @@ class Base64ImageField(ImageField):
             # Try to decode the file. Return validation error if it fails.
             print(base64_data)
             try:
-                decoded_file = base64.b64decode(base64_data)
+                decoded_file = base64.b64decode(bytes(base64_data, 'utf-8'))
                 print(decoded_file)
                 print("\n----\n")
             except TypeError:
