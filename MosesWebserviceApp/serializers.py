@@ -27,6 +27,7 @@ class CreateGroupSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         members_data = validated_data.pop('members')
 
+        # Check for one valid member in the members list
         one_valid_member = False
         for member in members_data:
             member = list(member.items())
