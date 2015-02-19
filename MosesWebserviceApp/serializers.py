@@ -33,7 +33,7 @@ class CreateGroupSerializer(serializers.ModelSerializer):
             member = list(member.items())
             user_facebook = member[0][1]
             user_obj = User.objects.filter(facebook_id=user_facebook)
-            if user_obj and validated_data['creator'].facebook_id != user_obj.facebook_id:
+            if user_obj and validated_data['creator'].facebook_id != user_facebook:
                 one_valid_member = True
                 break
 
