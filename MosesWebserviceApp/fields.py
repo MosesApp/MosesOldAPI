@@ -8,7 +8,6 @@ from django.utils.translation import ugettext_lazy as _
 from rest_framework.fields import ImageField
 
 
-DEFAULT_CONTENT_TYPE = "application/octet-stream"
 ALLOWED_IMAGE_TYPES = (
     "jpeg",
     "jpg",
@@ -17,7 +16,6 @@ ALLOWED_IMAGE_TYPES = (
 )
 
 EMPTY_VALUES = (None, '', [], (), {})
-
 
 string_type = str
 

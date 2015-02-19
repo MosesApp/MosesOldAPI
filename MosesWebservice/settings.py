@@ -103,7 +103,7 @@ STATICFILES_DIRS = (
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
-PRODUCTION = True
+PRODUCTION = False
 
 if PRODUCTION:
     SERVER_URL = 'http://mosesapp.me/'
@@ -113,13 +113,20 @@ else:
     SERVER_URL = 'http://localhost:8000/'
     NGINX_SERVER_URL = ''
 
+IMAGE_FOLDER = 'media' + os.sep + 'images'
+
+# URL prefix for static files.
+# Example: "http://example.com/static/", "http://static.example.com/"
 STATIC_URL = NGINX_SERVER_URL + '/static/'
 
-MEDIA_URL = 'media/'
+# URL that handles the media served from MEDIA_ROOT. Make sure to use a
+# trailing slash.
+# Examples: "http://example.com/media/", "http://media.example.com/"
+MEDIA_URL = SERVER_URL + 'media' + os.sep
 
-MEDIA_ROOT = (PROJECT_ROOT + os.sep)
-
-IMAGE_FOLDER = 'media'
+# Absolute filesystem path to the directory that will hold user-uploaded files.
+# Example: "/var/www/example.com/media/"
+MEDIA_ROOT = (PROJECT_ROOT + os.sep + IMAGE_FOLDER)
 
 REST_FRAMEWORK = {
     'PAGINATE_BY': 10
