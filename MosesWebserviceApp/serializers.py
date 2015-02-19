@@ -44,20 +44,23 @@ class CreateGroupSerializer(serializers.ModelSerializer):
 
         for member in members_data:
             member = list(member.items())
+            print(member)
             if len(member) >= 1:
                 user_facebook = member[0][1]
+                print(user_facebook)
                 if len(member) == 1:
                     administrator = False
                 else:
                     administrator = member[1][1]
                 user_obj = User.objects.filter(facebook_id=user_facebook)
+                print(user_obj)
                 if user_obj:
                     group_user = GroupUser(user=user_obj[0], group=group, administrator=administrator)
                     group_user.user_facebook = user_facebook
                     group_user.save()
                     group.members.append(group_user)
 
-        if not len(group.members) == 0:
+        if len(group.members) == 0:
             raise serializers.ValidationError("Check the group members facebook_id for invalid ones")
 
         return group

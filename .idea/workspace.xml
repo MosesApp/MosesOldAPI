@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55083824-7ff8-419c-aad5-4b0620bb7542" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MosesWebserviceApp/serializers.py" afterPath="$PROJECT_DIR$/MosesWebserviceApp/serializers.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -32,11 +31,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="serializers.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="serializers.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MosesWebserviceApp/serializers.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="945" max-vertical-offset="6237">
-              <caret line="59" column="38" selection-start-line="59" selection-start-column="38" selection-end-line="59" selection-end-column="38" />
+            <state vertical-scroll-proportion="0.3678474" vertical-offset="1215" max-vertical-offset="6318">
+              <caret line="55" column="30" selection-start-line="55" selection-start-column="30" selection-end-line="55" selection-end-column="30" />
               <folding>
                 <element signature="e#0#76#0" expanded="true" />
               </folding>
@@ -54,11 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MosesWebservice/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33787465" vertical-offset="2587" max-vertical-offset="3564">
-              <caret line="105" column="17" selection-start-line="105" selection-start-column="17" selection-end-line="105" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2587" max-vertical-offset="3564">
+              <caret line="102" column="21" selection-start-line="102" selection-start-column="21" selection-end-line="102" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -82,8 +81,8 @@
         <option value="$PROJECT_DIR$/MosesWebserviceApp/views.py" />
         <option value="$PROJECT_DIR$/MosesWebserviceApp/models.py" />
         <option value="$PROJECT_DIR$/MosesWebserviceApp/fields.py" />
-        <option value="$PROJECT_DIR$/MosesWebserviceApp/serializers.py" />
         <option value="$PROJECT_DIR$/MosesWebservice/settings.py" />
+        <option value="$PROJECT_DIR$/MosesWebserviceApp/serializers.py" />
       </list>
     </option>
   </component>
@@ -481,12 +480,6 @@
       <option name="number" value="Default" />
       <updated>1419182781112</updated>
     </task>
-    <task id="LOCAL-00028" summary="Add 'name' and 'description' to Bill">
-      <created>1421018060546</created>
-      <option name="number" value="00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1421018060546</updated>
-    </task>
     <task id="LOCAL-00029" summary="Refactor Bill service">
       <created>1421117287199</created>
       <option name="number" value="00029" />
@@ -775,7 +768,13 @@
       <option name="project" value="LOCAL" />
       <updated>1424307901282</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="Base64 fix test">
+      <created>1424308758335</created>
+      <option name="number" value="00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1424308758335</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1164,13 +1163,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MosesWebserviceApp/serializers.py">
+    <entry file="file://$PROJECT_DIR$/MosesWebservice/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="945" max-vertical-offset="6237">
-          <caret line="59" column="38" selection-start-line="59" selection-start-column="38" selection-end-line="59" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#76#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="2587" max-vertical-offset="3564">
+          <caret line="102" column="21" selection-start-line="102" selection-start-column="21" selection-end-line="102" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1182,11 +1179,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MosesWebservice/settings.py">
+    <entry file="file://$PROJECT_DIR$/MosesWebserviceApp/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33787465" vertical-offset="2587" max-vertical-offset="3564">
-          <caret line="105" column="17" selection-start-line="105" selection-start-column="17" selection-end-line="105" selection-end-column="17" />
-          <folding />
+        <state vertical-scroll-proportion="0.3678474" vertical-offset="1215" max-vertical-offset="6318">
+          <caret line="55" column="30" selection-start-line="55" selection-start-column="30" selection-end-line="55" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#76#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
