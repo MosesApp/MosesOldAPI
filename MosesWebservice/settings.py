@@ -105,15 +105,21 @@ STATICFILES_DIRS = (
 
 PRODUCTION = True
 
+IMAGE_FOLDER = 'media' + os.sep + 'images'
+
 if PRODUCTION:
     SERVER_URL = 'http://mosesapp.me/'
     NGINX_PORT = '8000'
     NGINX_SERVER_URL = 'http://mosesapp.me:' + NGINX_PORT
+    PROJECT_ROOT = '/home/admin/Moses-Webservice'
+
 else:
     SERVER_URL = 'http://localhost:8000/'
     NGINX_SERVER_URL = ''
 
-IMAGE_FOLDER = 'media' + os.sep + 'images'
+# Absolute filesystem path to the directory that will hold user-uploaded files.
+# Example: "/var/www/example.com/media/"
+MEDIA_ROOT = (PROJECT_ROOT + os.sep + IMAGE_FOLDER + os.sep)
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
@@ -123,10 +129,6 @@ STATIC_URL = NGINX_SERVER_URL + '/static/'
 # trailing slash.
 # Examples: "http://example.com/media/", "http://media.example.com/"
 MEDIA_URL = NGINX_SERVER_URL + os.sep + 'media' + os.sep
-
-# Absolute filesystem path to the directory that will hold user-uploaded files.
-# Example: "/var/www/example.com/media/"
-MEDIA_ROOT = ('/home/admin/Moses-Webservice' + os.sep + IMAGE_FOLDER + os.sep)
 
 REST_FRAMEWORK = {
     'PAGINATE_BY': 10
