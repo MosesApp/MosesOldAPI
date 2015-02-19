@@ -811,6 +811,7 @@
       <column name="aggsortop" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="aggtranstype" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="agginitval" sqlType="text" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
+      <index name="pg_aggregate_fnoid_index" unique="true" columns="aggfnoid"/>
     </table>
     <table name="pg_aggregate_fnoid_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="aggfnoid" sqlType="regproc" precision="2147483647" scale="0" nullable="true" jdbcType="1111"/>
@@ -846,6 +847,8 @@
       <column name="amcanreturn" sqlType="regproc" precision="2147483647" scale="0" nullable="false" jdbcType="1111"/>
       <column name="amcostestimate" sqlType="regproc" precision="2147483647" scale="0" nullable="false" jdbcType="1111"/>
       <column name="amoptions" sqlType="regproc" precision="2147483647" scale="0" nullable="false" jdbcType="1111"/>
+      <index name="pg_am_name_index" unique="true" columns="amname"/>
+      <index name="pg_am_oid_index" unique="true" columns="oid"/>
     </table>
     <table name="pg_am_name_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="amname" sqlType="cstring" precision="2147483647" scale="0" nullable="true" jdbcType="1111"/>
@@ -862,6 +865,9 @@
       <column name="amopopr" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="amopmethod" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="amopsortfamily" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
+      <index name="pg_amop_fam_strat_index" unique="true" columns="amopfamily,amoplefttype,amoprighttype,amopstrategy"/>
+      <index name="pg_amop_oid_index" unique="true" columns="oid"/>
+      <index name="pg_amop_opr_fam_index" unique="true" columns="amopopr,amoppurpose,amopfamily"/>
     </table>
     <table name="pg_amop_fam_strat_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="amopfamily" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -883,6 +889,8 @@
       <column name="amprocrighttype" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="amprocnum" sqlType="int2" precision="5" scale="0" nullable="false" jdbcType="5"/>
       <column name="amproc" sqlType="regproc" precision="2147483647" scale="0" nullable="false" jdbcType="1111"/>
+      <index name="pg_amproc_fam_proc_index" unique="true" columns="amprocfamily,amproclefttype,amprocrighttype,amprocnum"/>
+      <index name="pg_amproc_oid_index" unique="true" columns="oid"/>
     </table>
     <table name="pg_amproc_fam_proc_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="amprocfamily" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -898,6 +906,8 @@
       <column name="adnum" sqlType="int2" precision="5" scale="0" nullable="false" jdbcType="5"/>
       <column name="adbin" sqlType="pg_node_tree" precision="2147483647" scale="0" nullable="true" jdbcType="1111"/>
       <column name="adsrc" sqlType="text" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
+      <index name="pg_attrdef_adrelid_adnum_index" unique="true" columns="adrelid,adnum"/>
+      <index name="pg_attrdef_oid_index" unique="true" columns="oid"/>
     </table>
     <table name="pg_attrdef_adrelid_adnum_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="adrelid" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -928,6 +938,8 @@
       <column name="attacl" sqlType="_aclitem" precision="2147483647" scale="0" nullable="true" jdbcType="2003"/>
       <column name="attoptions" sqlType="_text" precision="2147483647" scale="0" nullable="true" jdbcType="2003"/>
       <column name="attfdwoptions" sqlType="_text" precision="2147483647" scale="0" nullable="true" jdbcType="2003"/>
+      <index name="pg_attribute_relid_attnam_index" unique="true" columns="attrelid,attname"/>
+      <index name="pg_attribute_relid_attnum_index" unique="true" columns="attrelid,attnum"/>
     </table>
     <table name="pg_attribute_relid_attnam_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="attrelid" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -942,6 +954,8 @@
       <column name="member" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="grantor" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="admin_option" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <index name="pg_auth_members_member_role_index" unique="true" columns="member,roleid"/>
+      <index name="pg_auth_members_role_member_index" unique="true" columns="roleid,member"/>
     </table>
     <table name="pg_auth_members_member_role_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="member" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -963,6 +977,8 @@
       <column name="rolconnlimit" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="rolpassword" sqlType="text" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
       <column name="rolvaliduntil" sqlType="timestamptz" precision="35" scale="6" nullable="true" jdbcType="93"/>
+      <index name="pg_authid_oid_index" unique="true" columns="oid"/>
+      <index name="pg_authid_rolname_index" unique="true" columns="rolname"/>
     </table>
     <table name="pg_authid_oid_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="oid" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -992,6 +1008,8 @@
       <column name="castfunc" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="castcontext" sqlType="char" precision="1" scale="0" nullable="false" jdbcType="1"/>
       <column name="castmethod" sqlType="char" precision="1" scale="0" nullable="false" jdbcType="1"/>
+      <index name="pg_cast_oid_index" unique="true" columns="oid"/>
+      <index name="pg_cast_source_target_index" unique="true" columns="castsource,casttarget"/>
     </table>
     <table name="pg_cast_oid_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="oid" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -1030,6 +1048,8 @@
       <column name="relminmxid" sqlType="xid" precision="2147483647" scale="0" nullable="false" jdbcType="1111"/>
       <column name="relacl" sqlType="_aclitem" precision="2147483647" scale="0" nullable="true" jdbcType="2003"/>
       <column name="reloptions" sqlType="_text" precision="2147483647" scale="0" nullable="true" jdbcType="2003"/>
+      <index name="pg_class_oid_index" unique="true" columns="oid"/>
+      <index name="pg_class_relname_nsp_index" unique="true" columns="relname,relnamespace"/>
     </table>
     <table name="pg_class_oid_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="oid" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -1045,6 +1065,8 @@
       <column name="collencoding" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="collcollate" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
       <column name="collctype" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <index name="pg_collation_name_enc_nsp_index" unique="true" columns="collname,collencoding,collnamespace"/>
+      <index name="pg_collation_oid_index" unique="true" columns="oid"/>
     </table>
     <table name="pg_collation_name_enc_nsp_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="collname" sqlType="cstring" precision="2147483647" scale="0" nullable="true" jdbcType="1111"/>
@@ -1079,6 +1101,10 @@
       <column name="conexclop" sqlType="_oid" precision="10" scale="0" nullable="true" jdbcType="2003"/>
       <column name="conbin" sqlType="pg_node_tree" precision="2147483647" scale="0" nullable="true" jdbcType="1111"/>
       <column name="consrc" sqlType="text" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
+      <index name="pg_constraint_oid_index" unique="true" columns="oid"/>
+      <index name="pg_constraint_conname_nsp_index" unique="false" columns="conname,connamespace"/>
+      <index name="pg_constraint_conrelid_index" unique="false" columns="conrelid"/>
+      <index name="pg_constraint_contypid_index" unique="false" columns="contypid"/>
     </table>
     <table name="pg_constraint_conname_nsp_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="conname" sqlType="cstring" precision="2147483647" scale="0" nullable="true" jdbcType="1111"/>
@@ -1101,6 +1127,9 @@
       <column name="contoencoding" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="conproc" sqlType="regproc" precision="2147483647" scale="0" nullable="false" jdbcType="1111"/>
       <column name="condefault" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
+      <index name="pg_conversion_default_index" unique="true" columns="connamespace,conforencoding,contoencoding,oid"/>
+      <index name="pg_conversion_name_nsp_index" unique="true" columns="conname,connamespace"/>
+      <index name="pg_conversion_oid_index" unique="true" columns="oid"/>
     </table>
     <table name="pg_conversion_default_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="connamespace" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -1137,6 +1166,8 @@
       <column name="datminmxid" sqlType="xid" precision="2147483647" scale="0" nullable="false" jdbcType="1111"/>
       <column name="dattablespace" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="datacl" sqlType="_aclitem" precision="2147483647" scale="0" nullable="true" jdbcType="2003"/>
+      <index name="pg_database_datname_index" unique="true" columns="datname"/>
+      <index name="pg_database_oid_index" unique="true" columns="oid"/>
     </table>
     <table name="pg_database_datname_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="datname" sqlType="cstring" precision="2147483647" scale="0" nullable="true" jdbcType="1111"/>
@@ -1148,6 +1179,7 @@
       <column name="setdatabase" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="setrole" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="setconfig" sqlType="_text" precision="2147483647" scale="0" nullable="true" jdbcType="2003"/>
+      <index name="pg_db_role_setting_databaseid_rol_index" unique="true" columns="setdatabase,setrole"/>
     </table>
     <table name="pg_db_role_setting_databaseid_rol_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="setdatabase" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -1158,6 +1190,8 @@
       <column name="defaclnamespace" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="defaclobjtype" sqlType="char" precision="1" scale="0" nullable="false" jdbcType="1"/>
       <column name="defaclacl" sqlType="_aclitem" precision="2147483647" scale="0" nullable="true" jdbcType="2003"/>
+      <index name="pg_default_acl_oid_index" unique="true" columns="oid"/>
+      <index name="pg_default_acl_role_nsp_obj_index" unique="true" columns="defaclrole,defaclnamespace,defaclobjtype"/>
     </table>
     <table name="pg_default_acl_oid_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="oid" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -1175,6 +1209,8 @@
       <column name="refobjid" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="refobjsubid" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="deptype" sqlType="char" precision="1" scale="0" nullable="false" jdbcType="1"/>
+      <index name="pg_depend_depender_index" unique="false" columns="classid,objid,objsubid"/>
+      <index name="pg_depend_reference_index" unique="false" columns="refclassid,refobjid,refobjsubid"/>
     </table>
     <table name="pg_depend_depender_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="classid" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -1191,6 +1227,7 @@
       <column name="classoid" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="objsubid" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="description" sqlType="text" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
+      <index name="pg_description_o_c_o_index" unique="true" columns="objoid,classoid,objsubid"/>
     </table>
     <table name="pg_description_o_c_o_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="objoid" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -1201,6 +1238,9 @@
       <column name="enumtypid" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="enumsortorder" sqlType="float4" precision="8" scale="8" nullable="false" jdbcType="7"/>
       <column name="enumlabel" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
+      <index name="pg_enum_oid_index" unique="true" columns="oid"/>
+      <index name="pg_enum_typid_label_index" unique="true" columns="enumtypid,enumlabel"/>
+      <index name="pg_enum_typid_sortorder_index" unique="true" columns="enumtypid,enumsortorder"/>
     </table>
     <table name="pg_enum_oid_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="oid" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -1220,6 +1260,8 @@
       <column name="evtfoid" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="evtenabled" sqlType="char" precision="1" scale="0" nullable="false" jdbcType="1"/>
       <column name="evttags" sqlType="_text" precision="2147483647" scale="0" nullable="true" jdbcType="2003"/>
+      <index name="pg_event_trigger_evtname_index" unique="true" columns="evtname"/>
+      <index name="pg_event_trigger_oid_index" unique="true" columns="oid"/>
     </table>
     <table name="pg_event_trigger_evtname_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="evtname" sqlType="cstring" precision="2147483647" scale="0" nullable="true" jdbcType="1111"/>
@@ -1235,6 +1277,8 @@
       <column name="extversion" sqlType="text" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
       <column name="extconfig" sqlType="_oid" precision="10" scale="0" nullable="true" jdbcType="2003"/>
       <column name="extcondition" sqlType="_text" precision="2147483647" scale="0" nullable="true" jdbcType="2003"/>
+      <index name="pg_extension_name_index" unique="true" columns="extname"/>
+      <index name="pg_extension_oid_index" unique="true" columns="oid"/>
     </table>
     <table name="pg_extension_name_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="extname" sqlType="cstring" precision="2147483647" scale="0" nullable="true" jdbcType="1111"/>
@@ -1249,6 +1293,8 @@
       <column name="fdwvalidator" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="fdwacl" sqlType="_aclitem" precision="2147483647" scale="0" nullable="true" jdbcType="2003"/>
       <column name="fdwoptions" sqlType="_text" precision="2147483647" scale="0" nullable="true" jdbcType="2003"/>
+      <index name="pg_foreign_data_wrapper_name_index" unique="true" columns="fdwname"/>
+      <index name="pg_foreign_data_wrapper_oid_index" unique="true" columns="oid"/>
     </table>
     <table name="pg_foreign_data_wrapper_name_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="fdwname" sqlType="cstring" precision="2147483647" scale="0" nullable="true" jdbcType="1111"/>
@@ -1264,6 +1310,8 @@
       <column name="srvversion" sqlType="text" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
       <column name="srvacl" sqlType="_aclitem" precision="2147483647" scale="0" nullable="true" jdbcType="2003"/>
       <column name="srvoptions" sqlType="_text" precision="2147483647" scale="0" nullable="true" jdbcType="2003"/>
+      <index name="pg_foreign_server_name_index" unique="true" columns="srvname"/>
+      <index name="pg_foreign_server_oid_index" unique="true" columns="oid"/>
     </table>
     <table name="pg_foreign_server_name_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="srvname" sqlType="cstring" precision="2147483647" scale="0" nullable="true" jdbcType="1111"/>
@@ -1275,6 +1323,7 @@
       <column name="ftrelid" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="ftserver" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="ftoptions" sqlType="_text" precision="2147483647" scale="0" nullable="true" jdbcType="2003"/>
+      <index name="pg_foreign_table_relid_index" unique="true" columns="ftrelid"/>
     </table>
     <table name="pg_foreign_table_relid_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="ftrelid" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -1303,6 +1352,8 @@
       <column name="indoption" sqlType="int2vector" precision="2147483647" scale="0" nullable="false" jdbcType="1111"/>
       <column name="indexprs" sqlType="pg_node_tree" precision="2147483647" scale="0" nullable="true" jdbcType="1111"/>
       <column name="indpred" sqlType="pg_node_tree" precision="2147483647" scale="0" nullable="true" jdbcType="1111"/>
+      <index name="pg_index_indexrelid_index" unique="true" columns="indexrelid"/>
+      <index name="pg_index_indrelid_index" unique="false" columns="indrelid"/>
     </table>
     <table name="pg_index_indexrelid_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="indexrelid" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -1321,6 +1372,8 @@
       <column name="inhrelid" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="inhparent" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="inhseqno" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <index name="pg_inherits_relid_seqno_index" unique="true" columns="inhrelid,inhseqno"/>
+      <index name="pg_inherits_parent_index" unique="false" columns="inhparent"/>
     </table>
     <table name="pg_inherits_parent_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="inhparent" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -1338,6 +1391,8 @@
       <column name="laninline" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="lanvalidator" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="lanacl" sqlType="_aclitem" precision="2147483647" scale="0" nullable="true" jdbcType="2003"/>
+      <index name="pg_language_name_index" unique="true" columns="lanname"/>
+      <index name="pg_language_oid_index" unique="true" columns="oid"/>
     </table>
     <table name="pg_language_name_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="lanname" sqlType="cstring" precision="2147483647" scale="0" nullable="true" jdbcType="1111"/>
@@ -1349,6 +1404,7 @@
       <column name="loid" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="pageno" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="data" sqlType="bytea" precision="2147483647" scale="0" nullable="true" jdbcType="-2"/>
+      <index name="pg_largeobject_loid_pn_index" unique="true" columns="loid,pageno"/>
     </table>
     <table name="pg_largeobject_loid_pn_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="loid" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -1357,6 +1413,7 @@
     <table name="pg_largeobject_metadata" schema="pg_catalog" catalog="moses" type="SYSTEM TABLE">
       <column name="lomowner" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="lomacl" sqlType="_aclitem" precision="2147483647" scale="0" nullable="true" jdbcType="2003"/>
+      <index name="pg_largeobject_metadata_oid_index" unique="true" columns="oid"/>
     </table>
     <table name="pg_largeobject_metadata_oid_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="oid" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -1391,6 +1448,8 @@
       <column name="nspname" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
       <column name="nspowner" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="nspacl" sqlType="_aclitem" precision="2147483647" scale="0" nullable="true" jdbcType="2003"/>
+      <index name="pg_namespace_nspname_index" unique="true" columns="nspname"/>
+      <index name="pg_namespace_oid_index" unique="true" columns="oid"/>
     </table>
     <table name="pg_namespace_nspname_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="nspname" sqlType="cstring" precision="2147483647" scale="0" nullable="true" jdbcType="1111"/>
@@ -1407,6 +1466,8 @@
       <column name="opcintype" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="opcdefault" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
       <column name="opckeytype" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
+      <index name="pg_opclass_am_name_nsp_index" unique="true" columns="opcmethod,opcname,opcnamespace"/>
+      <index name="pg_opclass_oid_index" unique="true" columns="oid"/>
     </table>
     <table name="pg_opclass_am_name_nsp_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="opcmethod" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -1431,6 +1492,8 @@
       <column name="oprcode" sqlType="regproc" precision="2147483647" scale="0" nullable="false" jdbcType="1111"/>
       <column name="oprrest" sqlType="regproc" precision="2147483647" scale="0" nullable="false" jdbcType="1111"/>
       <column name="oprjoin" sqlType="regproc" precision="2147483647" scale="0" nullable="false" jdbcType="1111"/>
+      <index name="pg_operator_oid_index" unique="true" columns="oid"/>
+      <index name="pg_operator_oprname_l_r_n_index" unique="true" columns="oprname,oprleft,oprright,oprnamespace"/>
     </table>
     <table name="pg_operator_oid_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="oid" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -1446,6 +1509,8 @@
       <column name="opfname" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
       <column name="opfnamespace" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="opfowner" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
+      <index name="pg_opfamily_am_name_nsp_index" unique="true" columns="opfmethod,opfname,opfnamespace"/>
+      <index name="pg_opfamily_oid_index" unique="true" columns="oid"/>
     </table>
     <table name="pg_opfamily_am_name_nsp_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="opfmethod" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -1464,6 +1529,7 @@
       <column name="tmplvalidator" sqlType="text" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
       <column name="tmpllibrary" sqlType="text" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
       <column name="tmplacl" sqlType="_aclitem" precision="2147483647" scale="0" nullable="true" jdbcType="2003"/>
+      <index name="pg_pltemplate_name_index" unique="true" columns="tmplname"/>
     </table>
     <table name="pg_pltemplate_name_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="tmplname" sqlType="cstring" precision="2147483647" scale="0" nullable="true" jdbcType="1111"/>
@@ -1510,6 +1576,8 @@
       <column name="probin" sqlType="text" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
       <column name="proconfig" sqlType="_text" precision="2147483647" scale="0" nullable="true" jdbcType="2003"/>
       <column name="proacl" sqlType="_aclitem" precision="2147483647" scale="0" nullable="true" jdbcType="2003"/>
+      <index name="pg_proc_oid_index" unique="true" columns="oid"/>
+      <index name="pg_proc_proname_args_nsp_index" unique="true" columns="proname,proargtypes,pronamespace"/>
     </table>
     <table name="pg_proc_oid_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="oid" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -1526,6 +1594,7 @@
       <column name="rngsubopc" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="rngcanonical" sqlType="regproc" precision="2147483647" scale="0" nullable="false" jdbcType="1111"/>
       <column name="rngsubdiff" sqlType="regproc" precision="2147483647" scale="0" nullable="false" jdbcType="1111"/>
+      <index name="pg_range_rngtypid_index" unique="true" columns="rngtypid"/>
     </table>
     <table name="pg_range_rngtypid_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="rngtypid" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -1539,6 +1608,8 @@
       <column name="is_instead" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
       <column name="ev_qual" sqlType="pg_node_tree" precision="2147483647" scale="0" nullable="true" jdbcType="1111"/>
       <column name="ev_action" sqlType="pg_node_tree" precision="2147483647" scale="0" nullable="true" jdbcType="1111"/>
+      <index name="pg_rewrite_oid_index" unique="true" columns="oid"/>
+      <index name="pg_rewrite_rel_rulename_index" unique="true" columns="ev_class,rulename"/>
     </table>
     <table name="pg_rewrite_oid_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="oid" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -1574,6 +1645,7 @@
       <column name="objsubid" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="provider" sqlType="text" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
       <column name="label" sqlType="text" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
+      <index name="pg_seclabel_object_index" unique="true" columns="objoid,classoid,objsubid,provider"/>
     </table>
     <table name="pg_seclabel_object_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="objoid" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -1628,6 +1700,8 @@
       <column name="refclassid" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="refobjid" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="deptype" sqlType="char" precision="1" scale="0" nullable="false" jdbcType="1"/>
+      <index name="pg_shdepend_depender_index" unique="false" columns="dbid,classid,objid,objsubid"/>
+      <index name="pg_shdepend_reference_index" unique="false" columns="refclassid,refobjid"/>
     </table>
     <table name="pg_shdepend_depender_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="dbid" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -1643,6 +1717,7 @@
       <column name="objoid" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="classoid" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="description" sqlType="text" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
+      <index name="pg_shdescription_o_c_index" unique="true" columns="objoid,classoid"/>
     </table>
     <table name="pg_shdescription_o_c_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="objoid" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -1653,6 +1728,7 @@
       <column name="classoid" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="provider" sqlType="text" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
       <column name="label" sqlType="text" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
+      <index name="pg_shseclabel_object_index" unique="true" columns="objoid,classoid,provider"/>
     </table>
     <table name="pg_shseclabel_object_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="objoid" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -2005,6 +2081,7 @@
       <column name="stavalues3" sqlType="anyarray" precision="2147483647" scale="0" nullable="true" jdbcType="1111"/>
       <column name="stavalues4" sqlType="anyarray" precision="2147483647" scale="0" nullable="true" jdbcType="1111"/>
       <column name="stavalues5" sqlType="anyarray" precision="2147483647" scale="0" nullable="true" jdbcType="1111"/>
+      <index name="pg_statistic_relid_att_inh_index" unique="true" columns="starelid,staattnum,stainherit"/>
     </table>
     <table name="pg_statistic_relid_att_inh_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="starelid" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -2041,6 +2118,8 @@
       <column name="spcowner" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="spcacl" sqlType="_aclitem" precision="2147483647" scale="0" nullable="true" jdbcType="2003"/>
       <column name="spcoptions" sqlType="_text" precision="2147483647" scale="0" nullable="true" jdbcType="2003"/>
+      <index name="pg_tablespace_oid_index" unique="true" columns="oid"/>
+      <index name="pg_tablespace_spcname_index" unique="true" columns="spcname"/>
     </table>
     <table name="pg_tablespace_oid_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="oid" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -2075,6 +2154,9 @@
       <column name="tgattr" sqlType="int2vector" precision="2147483647" scale="0" nullable="false" jdbcType="1111"/>
       <column name="tgargs" sqlType="bytea" precision="2147483647" scale="0" nullable="true" jdbcType="-2"/>
       <column name="tgqual" sqlType="pg_node_tree" precision="2147483647" scale="0" nullable="true" jdbcType="1111"/>
+      <index name="pg_trigger_oid_index" unique="true" columns="oid"/>
+      <index name="pg_trigger_tgrelid_tgname_index" unique="true" columns="tgrelid,tgname"/>
+      <index name="pg_trigger_tgconstraint_index" unique="false" columns="tgconstraint"/>
     </table>
     <table name="pg_trigger_oid_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="oid" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -2091,6 +2173,8 @@
       <column name="cfgnamespace" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="cfgowner" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="cfgparser" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
+      <index name="pg_ts_config_cfgname_index" unique="true" columns="cfgname,cfgnamespace"/>
+      <index name="pg_ts_config_oid_index" unique="true" columns="oid"/>
     </table>
     <table name="pg_ts_config_cfgname_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="cfgname" sqlType="cstring" precision="2147483647" scale="0" nullable="true" jdbcType="1111"/>
@@ -2101,6 +2185,7 @@
       <column name="maptokentype" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="mapseqno" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="mapdict" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
+      <index name="pg_ts_config_map_index" unique="true" columns="mapcfg,maptokentype,mapseqno"/>
     </table>
     <table name="pg_ts_config_map_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="mapcfg" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -2116,6 +2201,8 @@
       <column name="dictowner" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="dicttemplate" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="dictinitoption" sqlType="text" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
+      <index name="pg_ts_dict_dictname_index" unique="true" columns="dictname,dictnamespace"/>
+      <index name="pg_ts_dict_oid_index" unique="true" columns="oid"/>
     </table>
     <table name="pg_ts_dict_dictname_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="dictname" sqlType="cstring" precision="2147483647" scale="0" nullable="true" jdbcType="1111"/>
@@ -2132,6 +2219,8 @@
       <column name="prsend" sqlType="regproc" precision="2147483647" scale="0" nullable="false" jdbcType="1111"/>
       <column name="prsheadline" sqlType="regproc" precision="2147483647" scale="0" nullable="false" jdbcType="1111"/>
       <column name="prslextype" sqlType="regproc" precision="2147483647" scale="0" nullable="false" jdbcType="1111"/>
+      <index name="pg_ts_parser_oid_index" unique="true" columns="oid"/>
+      <index name="pg_ts_parser_prsname_index" unique="true" columns="prsname,prsnamespace"/>
     </table>
     <table name="pg_ts_parser_oid_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="oid" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -2145,6 +2234,8 @@
       <column name="tmplnamespace" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="tmplinit" sqlType="regproc" precision="2147483647" scale="0" nullable="false" jdbcType="1111"/>
       <column name="tmpllexize" sqlType="regproc" precision="2147483647" scale="0" nullable="false" jdbcType="1111"/>
+      <index name="pg_ts_template_oid_index" unique="true" columns="oid"/>
+      <index name="pg_ts_template_tmplname_index" unique="true" columns="tmplname,tmplnamespace"/>
     </table>
     <table name="pg_ts_template_oid_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="oid" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -2184,6 +2275,8 @@
       <column name="typdefaultbin" sqlType="pg_node_tree" precision="2147483647" scale="0" nullable="true" jdbcType="1111"/>
       <column name="typdefault" sqlType="text" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
       <column name="typacl" sqlType="_aclitem" precision="2147483647" scale="0" nullable="true" jdbcType="2003"/>
+      <index name="pg_type_oid_index" unique="true" columns="oid"/>
+      <index name="pg_type_typname_nsp_index" unique="true" columns="typname,typnamespace"/>
     </table>
     <table name="pg_type_oid_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="oid" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -2207,6 +2300,8 @@
       <column name="umuser" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="umserver" sqlType="oid" precision="10" scale="0" nullable="false" jdbcType="-5"/>
       <column name="umoptions" sqlType="_text" precision="2147483647" scale="0" nullable="true" jdbcType="2003"/>
+      <index name="pg_user_mapping_oid_index" unique="true" columns="oid"/>
+      <index name="pg_user_mapping_user_server_index" unique="true" columns="umuser,umserver"/>
     </table>
     <table name="pg_user_mapping_oid_index" schema="pg_catalog" catalog="moses" type="SYSTEM INDEX">
       <column name="oid" sqlType="oid" precision="10" scale="0" nullable="true" jdbcType="-5"/>
@@ -2238,6 +2333,10 @@
       <column name="currency" sqlType="varchar" precision="3" scale="0" nullable="false" jdbcType="12"/>
       <column name="deadline" sqlType="timestamptz" precision="35" scale="6" nullable="false" jdbcType="93"/>
       <column name="group_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="MosesWebserviceApp_bill_pkey" columns="id"/>
+      <foreign-key name="MosesW_group_id_5971959e65a6519d_fk_MosesWebserviceApp_group_id" columns="group_id" ref-table="MosesWebserviceApp_group" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <exported-key name="MosesWeb_bill_id_35c1657f0c125b34_fk_MosesWebserviceApp_bill_id" table="MosesWebserviceApp_billuser" schema="public" catalog="moses" columns="bill_id"/>
+      <index name="moseswebserviceapp_bill_0e939a4f" unique="false" columns="group_id"/>
     </table>
     <table name="MosesWebserviceApp_bill_id_seq" schema="public" catalog="moses" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
@@ -2258,6 +2357,11 @@
       <column name="status" sqlType="varchar" precision="10" scale="0" nullable="false" jdbcType="12"/>
       <column name="bill_id" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="member_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="MosesWebserviceApp_billuser_pkey" columns="id"/>
+      <foreign-key name="MosesWeb_bill_id_35c1657f0c125b34_fk_MosesWebserviceApp_bill_id" columns="bill_id" ref-table="MosesWebserviceApp_bill" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="MosesW_member_id_59d0da46e980e85c_fk_MosesWebserviceApp_user_id" columns="member_id" ref-table="MosesWebserviceApp_user" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="moseswebserviceapp_billuser_88bce984" unique="false" columns="bill_id"/>
+      <index name="moseswebserviceapp_billuser_b5c3e75b" unique="false" columns="member_id"/>
     </table>
     <table name="MosesWebserviceApp_billuser_id_seq" schema="public" catalog="moses" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
@@ -2277,6 +2381,12 @@
       <column name="image" sqlType="varchar" precision="100" scale="0" nullable="true" jdbcType="12"/>
       <column name="status" sqlType="varchar" precision="10" scale="0" nullable="false" jdbcType="12"/>
       <column name="creator_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="MosesWebserviceApp_group_pkey" columns="id"/>
+      <foreign-key name="Moses_creator_id_7d02cd18d44094cd_fk_MosesWebserviceApp_user_id" columns="creator_id" ref-table="MosesWebserviceApp_user" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <exported-key name="MosesW_group_id_5971959e65a6519d_fk_MosesWebserviceApp_group_id" table="MosesWebserviceApp_bill" schema="public" catalog="moses" columns="group_id"/>
+      <exported-key name="MosesW_group_id_1d565d037cb7dbf7_fk_MosesWebserviceApp_group_id" table="MosesWebserviceApp_groupuser" schema="public" catalog="moses" columns="group_id"/>
+      <index name="MosesWebserviceApp_group_creator_id_a0c40dc2efba8e5_uniq" unique="true" columns="creator_id,name"/>
+      <index name="moseswebserviceapp_group_3700153c" unique="false" columns="creator_id"/>
     </table>
     <table name="MosesWebserviceApp_group_id_seq" schema="public" catalog="moses" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
@@ -2295,6 +2405,12 @@
       <column name="administrator" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
       <column name="group_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="user_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="MosesWebserviceApp_groupuser_pkey" columns="id"/>
+      <foreign-key name="MosesW_group_id_1d565d037cb7dbf7_fk_MosesWebserviceApp_group_id" columns="group_id" ref-table="MosesWebserviceApp_group" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="MosesWeb_user_id_5880814a16fb6305_fk_MosesWebserviceApp_user_id" columns="user_id" ref-table="MosesWebserviceApp_user" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="MosesWebserviceApp_groupuser_user_id_517f6ee7968f9358_uniq" unique="true" columns="user_id,group_id"/>
+      <index name="moseswebserviceapp_groupuser_0e939a4f" unique="false" columns="group_id"/>
+      <index name="moseswebserviceapp_groupuser_e8701ad4" unique="false" columns="user_id"/>
     </table>
     <table name="MosesWebserviceApp_groupuser_id_seq" schema="public" catalog="moses" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
@@ -2316,6 +2432,12 @@
       <column name="facebook_id" sqlType="varchar" precision="20" scale="0" nullable="false" jdbcType="12"/>
       <column name="locale" sqlType="varchar" precision="5" scale="0" nullable="false" jdbcType="12"/>
       <column name="timezone" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="MosesWebserviceApp_user_pkey" columns="id"/>
+      <exported-key name="MosesW_member_id_59d0da46e980e85c_fk_MosesWebserviceApp_user_id" table="MosesWebserviceApp_billuser" schema="public" catalog="moses" columns="member_id"/>
+      <exported-key name="Moses_creator_id_7d02cd18d44094cd_fk_MosesWebserviceApp_user_id" table="MosesWebserviceApp_group" schema="public" catalog="moses" columns="creator_id"/>
+      <exported-key name="MosesWeb_user_id_5880814a16fb6305_fk_MosesWebserviceApp_user_id" table="MosesWebserviceApp_groupuser" schema="public" catalog="moses" columns="user_id"/>
+      <index name="MosesWebserviceApp_user_email_key" unique="true" columns="email"/>
+      <index name="MosesWebserviceApp_user_facebook_id_key" unique="true" columns="facebook_id"/>
     </table>
     <table name="MosesWebserviceApp_user_id_seq" schema="public" catalog="moses" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
@@ -2332,6 +2454,10 @@
     <table name="auth_group" schema="public" catalog="moses" type="TABLE">
       <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnYXV0aF9ncm91cF9pZF9zZXEnOjpyZWdjbGFzcyk=" autoIncrement="true"/>
       <column name="name" sqlType="varchar" precision="80" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="auth_group_pkey" columns="id"/>
+      <exported-key name="auth_group_permissio_group_id_26bfb5a8196df402_fk_auth_group_id" table="auth_group_permissions" schema="public" catalog="moses" columns="group_id"/>
+      <exported-key name="auth_user_groups_group_id_1dd43440275cab15_fk_auth_group_id" table="auth_user_groups" schema="public" catalog="moses" columns="group_id"/>
+      <index name="auth_group_name_key" unique="true" columns="name"/>
     </table>
     <table name="auth_group_id_seq" schema="public" catalog="moses" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
@@ -2349,6 +2475,12 @@
       <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnYXV0aF9ncm91cF9wZXJtaXNzaW9uc19pZF9zZXEnOjpyZWdjbGFzcyk=" autoIncrement="true"/>
       <column name="group_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="permission_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="auth_group_permissions_pkey" columns="id"/>
+      <foreign-key name="auth_group_permissio_group_id_26bfb5a8196df402_fk_auth_group_id" columns="group_id" ref-table="auth_group" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="auth_group_permission_id_6b16459a391b14c9_fk_auth_permission_id" columns="permission_id" ref-table="auth_permission" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="auth_group_permissions_group_id_permission_id_key" unique="true" columns="group_id,permission_id"/>
+      <index name="auth_group_permissions_0e939a4f" unique="false" columns="group_id"/>
+      <index name="auth_group_permissions_8373b171" unique="false" columns="permission_id"/>
     </table>
     <table name="auth_group_permissions_id_seq" schema="public" catalog="moses" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
@@ -2367,6 +2499,12 @@
       <column name="name" sqlType="varchar" precision="50" scale="0" nullable="false" jdbcType="12"/>
       <column name="content_type_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="codename" sqlType="varchar" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="auth_permission_pkey" columns="id"/>
+      <foreign-key name="auth_content_type_id_6504106b21c54c24_fk_django_content_type_id" columns="content_type_id" ref-table="django_content_type" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <exported-key name="auth_group_permission_id_6b16459a391b14c9_fk_auth_permission_id" table="auth_group_permissions" schema="public" catalog="moses" columns="permission_id"/>
+      <exported-key name="auth_user_u_permission_id_7440928848bc227_fk_auth_permission_id" table="auth_user_user_permissions" schema="public" catalog="moses" columns="permission_id"/>
+      <index name="auth_permission_content_type_id_codename_key" unique="true" columns="content_type_id,codename"/>
+      <index name="auth_permission_417f1b1c" unique="false" columns="content_type_id"/>
     </table>
     <table name="auth_permission_id_seq" schema="public" catalog="moses" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
@@ -2392,11 +2530,22 @@
       <column name="is_staff" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
       <column name="is_active" sqlType="bool" precision="1" scale="0" nullable="false" jdbcType="-7"/>
       <column name="date_joined" sqlType="timestamptz" precision="35" scale="6" nullable="false" jdbcType="93"/>
+      <primary-key name="auth_user_pkey" columns="id"/>
+      <exported-key name="auth_user_groups_user_id_66482a0a183b5ef_fk_auth_user_id" table="auth_user_groups" schema="public" catalog="moses" columns="user_id"/>
+      <exported-key name="auth_user_user_permiss_user_id_238c1cf2a155daec_fk_auth_user_id" table="auth_user_user_permissions" schema="public" catalog="moses" columns="user_id"/>
+      <exported-key name="django_admin_log_user_id_1822c7d8e59d5da8_fk_auth_user_id" table="django_admin_log" schema="public" catalog="moses" columns="user_id"/>
+      <index name="auth_user_username_key" unique="true" columns="username"/>
     </table>
     <table name="auth_user_groups" schema="public" catalog="moses" type="TABLE">
       <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnYXV0aF91c2VyX2dyb3Vwc19pZF9zZXEnOjpyZWdjbGFzcyk=" autoIncrement="true"/>
       <column name="user_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="group_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="auth_user_groups_pkey" columns="id"/>
+      <foreign-key name="auth_user_groups_group_id_1dd43440275cab15_fk_auth_group_id" columns="group_id" ref-table="auth_group" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="auth_user_groups_user_id_66482a0a183b5ef_fk_auth_user_id" columns="user_id" ref-table="auth_user" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="auth_user_groups_user_id_group_id_key" unique="true" columns="user_id,group_id"/>
+      <index name="auth_user_groups_0e939a4f" unique="false" columns="group_id"/>
+      <index name="auth_user_groups_e8701ad4" unique="false" columns="user_id"/>
     </table>
     <table name="auth_user_groups_id_seq" schema="public" catalog="moses" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
@@ -2426,6 +2575,12 @@
       <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnYXV0aF91c2VyX3VzZXJfcGVybWlzc2lvbnNfaWRfc2VxJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
       <column name="user_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="permission_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="auth_user_user_permissions_pkey" columns="id"/>
+      <foreign-key name="auth_user_u_permission_id_7440928848bc227_fk_auth_permission_id" columns="permission_id" ref-table="auth_permission" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="auth_user_user_permiss_user_id_238c1cf2a155daec_fk_auth_user_id" columns="user_id" ref-table="auth_user" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="auth_user_user_permissions_user_id_permission_id_key" unique="true" columns="user_id,permission_id"/>
+      <index name="auth_user_user_permissions_8373b171" unique="false" columns="permission_id"/>
+      <index name="auth_user_user_permissions_e8701ad4" unique="false" columns="user_id"/>
     </table>
     <table name="auth_user_user_permissions_id_seq" schema="public" catalog="moses" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
@@ -2448,6 +2603,11 @@
       <column name="change_message" sqlType="text" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
       <column name="content_type_id" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="user_id" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="django_admin_log_pkey" columns="id"/>
+      <foreign-key name="django_admin_log_user_id_1822c7d8e59d5da8_fk_auth_user_id" columns="user_id" ref-table="auth_user" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <foreign-key name="djan_content_type_id_24e41a32f57e23ae_fk_django_content_type_id" columns="content_type_id" ref-table="django_content_type" ref-schema="public" ref-catalog="" ref-columns="id" update-rule="3" delete-rule="3" deferrability="1"/>
+      <index name="django_admin_log_417f1b1c" unique="false" columns="content_type_id"/>
+      <index name="django_admin_log_e8701ad4" unique="false" columns="user_id"/>
     </table>
     <table name="django_admin_log_id_seq" schema="public" catalog="moses" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
@@ -2466,6 +2626,10 @@
       <column name="name" sqlType="varchar" precision="100" scale="0" nullable="false" jdbcType="12"/>
       <column name="app_label" sqlType="varchar" precision="100" scale="0" nullable="false" jdbcType="12"/>
       <column name="model" sqlType="varchar" precision="100" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="django_content_type_pkey" columns="id"/>
+      <exported-key name="auth_content_type_id_6504106b21c54c24_fk_django_content_type_id" table="auth_permission" schema="public" catalog="moses" columns="content_type_id"/>
+      <exported-key name="djan_content_type_id_24e41a32f57e23ae_fk_django_content_type_id" table="django_admin_log" schema="public" catalog="moses" columns="content_type_id"/>
+      <index name="django_content_type_app_label_5becea2436148443_uniq" unique="true" columns="app_label,model"/>
     </table>
     <table name="django_content_type_id_seq" schema="public" catalog="moses" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
@@ -2484,6 +2648,7 @@
       <column name="app" sqlType="varchar" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <column name="name" sqlType="varchar" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <column name="applied" sqlType="timestamptz" precision="35" scale="6" nullable="false" jdbcType="93"/>
+      <primary-key name="django_migrations_pkey" columns="id"/>
     </table>
     <table name="django_migrations_id_seq" schema="public" catalog="moses" type="SEQUENCE">
       <column name="sequence_name" sqlType="name" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
@@ -2501,6 +2666,8 @@
       <column name="session_key" sqlType="varchar" precision="40" scale="0" nullable="false" jdbcType="12"/>
       <column name="session_data" sqlType="text" precision="2147483647" scale="0" nullable="false" jdbcType="12"/>
       <column name="expire_date" sqlType="timestamptz" precision="35" scale="6" nullable="false" jdbcType="93"/>
+      <primary-key name="django_session_pkey" columns="session_key"/>
+      <index name="django_session_de54fa62" unique="false" columns="expire_date"/>
     </table>
     <procedure name="_pg_char_max_length" schema="information_schema" catalog="moses" type="2">
       <prototype>
