@@ -108,7 +108,7 @@ PRODUCTION = True
 if PRODUCTION:
     SERVER_URL = 'http://mosesapp.me/'
     NGINX_PORT = '8000'
-    NGINX_SERVER_URL = 'http://mosesapp.me:' + NGINX_PORT + '/'
+    NGINX_SERVER_URL = 'http://mosesapp.me:' + NGINX_PORT
 else:
     SERVER_URL = 'http://localhost:8000/'
     NGINX_SERVER_URL = ''
