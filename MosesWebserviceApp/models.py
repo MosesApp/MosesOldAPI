@@ -1,6 +1,6 @@
 import uuid
 from django.db import models
-from MosesWebservice.settings import GROUP_STATUS, PAYMENT_STATUS, PAYMENT_CURRENCY, MEDIA_ROOT, BILL_RELATION
+from MosesWebservice.settings import GROUP_STATUS, PAYMENT_STATUS, PAYMENT_CURRENCY, IMAGE_FOLDER, BILL_RELATION
 import os
 
 
@@ -11,8 +11,7 @@ def get_unique_image_file_path(instance=None, filename='dummy.jpg'):
     """
     ext = filename.split('.')[-1]
     filename = "%s.%s" % (uuid.uuid4(), ext)
-    print(os.path.join(MEDIA_ROOT, filename))
-    return os.path.join(MEDIA_ROOT, filename)
+    return os.path.join(IMAGE_FOLDER, filename)
 
 
 class User(models.Model):
