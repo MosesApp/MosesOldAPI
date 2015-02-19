@@ -57,7 +57,7 @@ class CreateGroupSerializer(serializers.ModelSerializer):
                     group_user.save()
                     group.members.append(group_user)
 
-        if not group.members:
+        if not len(group.members) == 0:
             raise serializers.ValidationError("Check the group members facebook_id for invalid ones")
 
         return group
