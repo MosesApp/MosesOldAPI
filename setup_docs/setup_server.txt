@@ -1,0 +1,5 @@
+http://www.nickpolet.com/blog/deploying-django-on-aws/1/
+
+http://agiliq.com/blog/2014/08/deploying-a-django-app-on-amazon-ec2-instance/
+
+http://scottrogowski.com/basic-nginx-django-server-setup/
