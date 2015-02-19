@@ -115,7 +115,7 @@ else:
 
 STATIC_URL = NGINX_SERVER_URL + '/static/'
 
-MEDIA_URL = '/media/'
+MEDIA_URL = 'media/'
 
 MEDIA_ROOT = (PROJECT_ROOT + os.sep)
 
