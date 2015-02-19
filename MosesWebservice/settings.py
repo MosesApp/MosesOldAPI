@@ -126,7 +126,7 @@ MEDIA_URL = NGINX_SERVER_URL + os.sep + 'media' + os.sep
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = (PROJECT_ROOT + os.sep + IMAGE_FOLDER + os.sep)
+MEDIA_ROOT = ('/home/admin/Moses-Webservice' + os.sep + IMAGE_FOLDER + os.sep)
 
 REST_FRAMEWORK = {
     'PAGINATE_BY': 10
