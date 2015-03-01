@@ -131,5 +131,5 @@ STATIC_URL = NGINX_SERVER_URL + '/static/'
 MEDIA_URL = NGINX_SERVER_URL + os.sep + 'media' + os.sep
 
 REST_FRAMEWORK = {
-    'PAGINATE_BY': 30
+    'PAGINATE_BY': 20
 }
