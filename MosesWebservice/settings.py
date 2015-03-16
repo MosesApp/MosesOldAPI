@@ -130,6 +130,6 @@ STATIC_URL = NGINX_SERVER_URL + '/static/'
 # Examples: "http://example.com/media/", "http://media.example.com/"
 MEDIA_URL = NGINX_SERVER_URL + os.sep + 'media' + os.sep
 
-REST_FRAMEWORK = {
-    'PAGINATE_BY': 20
-}
+# REST_FRAMEWORK = {
+#    'PAGINATE_BY': 20
+# }
