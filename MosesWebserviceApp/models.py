@@ -1,7 +1,6 @@
 import uuid
 from django.db import models
 from MosesWebservice.settings import GROUP_STATUS, PAYMENT_STATUS, PAYMENT_CURRENCY, BILL_RELATION
-import os
 
 
 def get_unique_image_file_path(instance=None, filename='dummy.jpg'):
@@ -56,7 +55,7 @@ class Bill(models.Model):
                                 default='CA',
                                 max_length=3,
                                 choices=PAYMENT_CURRENCY)
-    deadline = models.DateTimeField(blank=False)
+    date = models.DateTimeField(blank=False)
 
     def __str__(self):
         return "%s;%s;%s" % (self.name, self.description, self.group)

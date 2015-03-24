@@ -183,14 +183,14 @@ class BillSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Bill
-        fields = ('id', 'name', 'description', 'group', 'receipt_image', 'amount', 'currency', 'deadline', 'members')
+        fields = ('id', 'name', 'description', 'group', 'receipt_image', 'amount', 'currency', 'date', 'members')
 
 
 class BillSerializerStandard(serializers.ModelSerializer):
 
     class Meta:
         model = Bill
-        fields = ('id', 'name', 'description', 'group', 'receipt_image', 'amount', 'currency', 'deadline')
+        fields = ('id', 'name', 'description', 'group', 'receipt_image', 'amount', 'currency', 'date')
 
 
 class BillUserSerializerUser(serializers.ModelSerializer):
