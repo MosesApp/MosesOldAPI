@@ -1,7 +1,7 @@
-from MosesWebserviceApp.models import User, Group, Bill, BillUser, GroupUser
+from MosesWebserviceApp.models import User, Group, Bill, BillUser, GroupUser, Currency
 from MosesWebserviceApp.serializers import UserSerializer, GroupSerializer, BillSerializer,\
     ReadGroupUserSerializerUser, ReadGroupUserSerializerGroup, WriteGroupUserSerializer, BillUserSerializerUser, \
-    CreateGroupSerializer
+    CreateGroupSerializer, CurrencySerializer
 from rest_framework import generics, permissions
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -22,6 +22,7 @@ def api_root(request, format=None):
         '[CREATE] Bill': SERVER_URL + 'bill/',
         '[CRUD] Bill_User': reverse('bill_user-crud', request=request, format=format),
         '[READ] Bill_User': SERVER_URL + 'bill_user/$id',
+        '[CRUD] Currency': reverse('currency-crud', request=request, format=format),
     })
 
 
@@ -110,3 +111,11 @@ class GroupUserDetailGroup(generics.ListAPIView):
 
         key = self.kwargs['pk']
         return GroupUser.objects.filter(group__pk=key)
+
+
+# Currency CRUD
+class CurrencyList(generics.ListCreateAPIView):
+    queryset = Currency.objects.all()
+    serializer_class = CurrencySerializer
+    permission_classes = (permissions.IsAuthenticated,)
+

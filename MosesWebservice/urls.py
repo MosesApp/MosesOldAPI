@@ -42,6 +42,10 @@ urlpatterns = format_suffix_patterns(patterns('MosesWebserviceApp.views',
         views.GroupUserDetailGroup.as_view(),
         name='group_user-detail_group'),
 
+    url(r'^currencies/$',
+        views.CurrencyList.as_view(),
+        name='currency-crud'),
+
 )) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += patterns('', url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),)

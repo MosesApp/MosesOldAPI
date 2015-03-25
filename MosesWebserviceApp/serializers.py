@@ -1,4 +1,4 @@
-from MosesWebserviceApp.models import User, Bill, BillUser, Group, GroupUser
+from MosesWebserviceApp.models import User, Bill, BillUser, Group, GroupUser, Currency
 from rest_framework import serializers
 from MosesWebserviceApp.fields import Base64ImageField
 
@@ -223,6 +223,13 @@ class WriteGroupUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = GroupUser
         fields = ('id', 'user', 'group', 'administrator')
+
+
+class CurrencySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Currency
+        fields = ('id', 'prefix', 'description')
 
 
 

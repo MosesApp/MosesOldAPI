@@ -1,6 +1,6 @@
 import uuid
 from django.db import models
-from MosesWebservice.settings import GROUP_STATUS, PAYMENT_STATUS, PAYMENT_CURRENCY, BILL_RELATION
+from MosesWebservice.settings import GROUP_STATUS, PAYMENT_STATUS, BILL_RELATION
 
 
 def get_unique_image_file_path(instance=None, filename='dummy.jpg'):
@@ -51,10 +51,7 @@ class Bill(models.Model):
     group = models.ForeignKey(Group, blank=False)
     receipt_image = models.ImageField(upload_to=get_unique_image_file_path, null=True)
     amount = models.FloatField(blank=False)
-    currency = models.CharField(blank=False,
-                                default='CA',
-                                max_length=3,
-                                choices=PAYMENT_CURRENCY)
+    currency = models.ForeignKey(Currency, blank=False, related_name='currency')
     date = models.DateTimeField(blank=False)
 
     def __str__(self):
@@ -95,3 +92,18 @@ class GroupUser(models.Model):
     class Meta:
         ordering = ('user', )
         unique_together = (("user", "group"),)
+
+
+class Currency(models.Model):
+    prefix = models.CharField(blank=False,
+                              default='CAD',
+                              max_length=3)
+    description = models.CharField(max_length=100,
+                                   blank=False)
+
+    def __str__(self):
+        return "%s;%s" % (self.prefix, self.description)
+
+    class Meta:
+        ordering = ('prefix', )
+        unique_together = ("prefix", )

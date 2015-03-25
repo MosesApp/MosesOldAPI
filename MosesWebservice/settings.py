@@ -14,7 +14,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 GROUP_STATUS = (('active', 'Active'), ('inactive', 'Inactive'))
 PAYMENT_STATUS = (('paid', 'Paid'), ('not paid', 'Not paid'))
-PAYMENT_CURRENCY = (('CA', 'CA'), ('US', 'US'), ('BR', 'BR'))
 BILL_RELATION = (('debtor', 'debtor'), ('taker', 'taker'))
 
 
