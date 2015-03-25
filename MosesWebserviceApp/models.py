@@ -13,6 +13,20 @@ def get_unique_image_file_path(instance=None, filename='dummy.jpg'):
     return filename
 
 
+class Currency(models.Model):
+    prefix = models.CharField(blank=False,
+                              default='CAD',
+                              max_length=3)
+    description = models.CharField(max_length=100,
+                                   blank=False)
+
+    def __str__(self):
+        return "%s;%s" % (self.prefix, self.description)
+
+    class Meta:
+        ordering = ('prefix', )
+        unique_together = ("prefix", )
+
 class User(models.Model):
     first_name = models.CharField(max_length=50, blank=False)
     full_name = models.CharField(max_length=300, blank=False)
@@ -94,16 +108,3 @@ class GroupUser(models.Model):
         unique_together = (("user", "group"),)
 
 
-class Currency(models.Model):
-    prefix = models.CharField(blank=False,
-                              default='CAD',
-                              max_length=3)
-    description = models.CharField(max_length=100,
-                                   blank=False)
-
-    def __str__(self):
-        return "%s;%s" % (self.prefix, self.description)
-
-    class Meta:
-        ordering = ('prefix', )
-        unique_together = ("prefix", )
