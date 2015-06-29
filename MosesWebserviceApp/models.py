@@ -66,14 +66,13 @@ class Bill(models.Model):
     receipt_image = models.ImageField(upload_to=get_unique_image_file_path, null=True)
     amount = models.FloatField(blank=False)
     currency = models.ForeignKey(Currency, blank=False, related_name='currency')
-    date = models.DateTimeField(blank=False)
+    date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return "%s;%s;%s" % (self.name, self.description, self.group)
 
     class Meta:
         ordering = ('amount', )
-
 
 class BillUser(models.Model):
     bill = models.ForeignKey(Bill, blank=False, null=True, related_name='bill')

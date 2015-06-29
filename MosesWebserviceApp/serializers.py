@@ -1,7 +1,7 @@
 from MosesWebserviceApp.models import User, Bill, BillUser, Group, GroupUser, Currency
 from rest_framework import serializers
 from MosesWebserviceApp.fields import Base64ImageField
-
+import datetime
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
 
@@ -86,6 +86,7 @@ class BillUserSerializer(serializers.ModelSerializer):
 
 class BillSerializer(serializers.ModelSerializer):
 
+    receipt_image = Base64ImageField(required=False, allow_null=True)
     members = BillUserSerializer(many=True)
 
     def create(self, validated_data):
