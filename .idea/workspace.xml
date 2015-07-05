@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55083824-7ff8-419c-aad5-4b0620bb7542" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/MosesWebserviceApp/migrations/0001_initial.py" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MosesWebserviceApp/models.py" afterPath="$PROJECT_DIR$/MosesWebserviceApp/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MosesWebserviceApp/serializers.py" afterPath="$PROJECT_DIR$/MosesWebserviceApp/serializers.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MosesWebservice/settings.py" afterPath="$PROJECT_DIR$/MosesWebservice/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MosesWebservice/urls.py" afterPath="$PROJECT_DIR$/MosesWebservice/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MosesWebserviceApp/views.py" afterPath="$PROJECT_DIR$/MosesWebserviceApp/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/media/images/6f558662-13c8-4e5d-84a9-198a9d212a1f.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/media/images/bb34bd05-50d1-4b98-b5e2-4c60823a95ff.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/media/images/d12ce86e-4650-4494-a14f-ed4b162d772b.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/media/images/ecf74b1e-5abf-4fd6-81e5-06834c98f0b9.jpg" afterPath="" />
     </list>
     <ignored path="MosesWebservice.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -836,7 +833,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="-1161" width="1780" height="1147" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32985783" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -848,7 +845,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32903227" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20530565" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20530565" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32890996" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2516129" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
