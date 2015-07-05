@@ -1,7 +1,6 @@
 from MosesWebserviceApp.models import User, Bill, BillUser, Group, GroupUser, Currency
 from rest_framework import serializers
 from MosesWebserviceApp.fields import Base64ImageField
-import datetime
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
 

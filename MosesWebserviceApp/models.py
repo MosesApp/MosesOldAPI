@@ -86,6 +86,7 @@ class BillUser(models.Model):
                               max_length=10,
                               blank=False,
                               default='not paid')
+    payed_date = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
         return "%s;%s;%s;%s" % (self.bill, self.member, self.relation, self.status)

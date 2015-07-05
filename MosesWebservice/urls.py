@@ -7,44 +7,67 @@ from django.conf.urls.static import static
 urlpatterns = format_suffix_patterns(patterns('MosesWebserviceApp.views',
     url(r'^$', 'api_root'),
 
-    url(r'^users/$',
+    # User
+    url(r'^listUsers/$',
         views.UserList.as_view(),
-        name='user-crud'),
-    url(r'^user/(?P<pk>[0-9&]+)/$',
-        views.UserDetail.as_view(),
-        name='user-detail'),
+        name='user-list'),
 
-    url(r'^groups/$',
-        views.GroupList.as_view(),
-        name='group-read'),
-    url(r'^group/$',
+    url(r'^createUser/$',
+        views.UserCreate.as_view(),
+        name='user-create'),
+
+    url(r'^getUser/(?P<pk>[0-9&]+)/$',
+        views.UserDetails.as_view(),
+        name='user-details-filter-facebookid'),
+
+    # Group
+    url(r'^createGroup/$',
         views.GroupCreate.as_view(),
         name='group-create'),
 
-    url(r'^bill/$',
+    url(r'^listGroups/$',
+        views.GroupList.as_view(),
+        name='group-list'),
+
+    # Group_User
+    url(r'^createGroupUserRelation/$',
+        views.GroupUserCreate.as_view(),
+        name='group_user-create'),
+
+    url(r'^getUserGroupRelation/Group/(?P<pk>[0-9]+)/$',
+        views.GroupUserDetailGroup.as_view(),
+        name='group_user-details-filter-groupid'),
+
+    url(r'^getUserGroupRelation/User/(?P<pk>[0-9]+)/$',
+        views.GroupUserDetailUser.as_view(),
+        name='group_user-details-filter-userid'),
+
+    # Bill
+    url(r'^createBill/$',
         views.BillCreate.as_view(),
         name='bill-create'),
 
-    url(r'^bill_users/$',
+    # Bill User
+    url(r'^listBillUsers/$',
         views.BillUserList.as_view(),
-        name='bill_user-crud'),
-    url(r'^bill_user/(?P<pk>[0-9]+)/$',
+        name='bill_user-list'),
+
+    url(r'^createBillUser/$',
+        views.BillUserCreate.as_view(),
+        name='bill_user-create'),
+
+    url(r'^getBillUser/(?P<pk>[0-9]+)/$',
         views.BillUserDetail.as_view(),
-        name='bill_user-detail'),
+        name='bill_user-details'),
 
-    url(r'^group_user/$',
-        views.GroupUserCreate.as_view(),
-        name='group_user-create'),
-    url(r'^group_user_user/(?P<pk>[0-9]+)/$',
-        views.GroupUserDetailUser.as_view(),
-        name='group_user-detail_user'),
-    url(r'^group_user_group/(?P<pk>[0-9]+)/$',
-        views.GroupUserDetailGroup.as_view(),
-        name='group_user-detail_group'),
-
-    url(r'^currencies/$',
+    # Currency
+    url(r'^listCurrencies/$',
         views.CurrencyList.as_view(),
-        name='currency-crud'),
+        name='currency-list'),
+
+    url(r'^createCurrency/$',
+        views.CurrencyCreate.as_view(),
+        name='currency-create'),
 
 )) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

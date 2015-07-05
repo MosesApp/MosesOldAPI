@@ -7,7 +7,7 @@ https://docs.djangoproject.com/en/1.7/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
-
+import socket
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -113,7 +113,7 @@ if PRODUCTION:
     PROJECT_ROOT = '/home/admin/Moses-Webservice'
 
 else:
-    SERVER_URL = 'http://localhost:8000/'
+    SERVER_URL = 'http://' + str(socket.gethostbyname(socket.gethostname())) +':8000/'
     NGINX_SERVER_URL = ''
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
