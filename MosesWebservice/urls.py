@@ -34,11 +34,11 @@ urlpatterns = format_suffix_patterns(patterns('MosesWebserviceApp.views',
         views.GroupUserCreate.as_view(),
         name='group_user-create'),
 
-    url(r'^getUserGroupRelation/Group/(?P<pk>[0-9]+)/$',
+    url(r'^getUserGroupRelationGroupId/(?P<pk>[0-9]+)/$',
         views.GroupUserDetailGroup.as_view(),
         name='group_user-details-filter-groupid'),
 
-    url(r'^getUserGroupRelation/User/(?P<pk>[0-9]+)/$',
+    url(r'^getUserGroupRelationUserId/(?P<pk>[0-9]+)/$',
         views.GroupUserDetailUser.as_view(),
         name='group_user-details-filter-userid'),
 
