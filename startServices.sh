@@ -13,6 +13,8 @@ docker run -d --volumes-from dbdata --name mosesdb mosesdb
 
 #create serve image
 docker build -t mosesweb .
-docker run --link mosesdb:localhost -p 8000:8000 -d --name mosesweb mosesweb
+#make sure you execute manually manage.py migrate/syncdb if needed
+docker run --link mosesdb:localhost -v $(pwd):/usr/src/app \
+-p 8000:8000 -d --name mosesweb mosesweb
 
 echo "All set. Give it a try."
