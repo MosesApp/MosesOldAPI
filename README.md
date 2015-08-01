@@ -56,4 +56,4 @@ POST   | /currency               | Creates a currency. Returns the created curre
 ## WebService
 
 ### Class Diagram
-![Moses Class Diagram](https://github.com/danielmapar/MosesWebservice/tree/master/documentation/MosesClassDiagram.png)
+![Moses Class Diagram](https://github.com/danielmapar/MosesWebservice/blob/master/documentation/MosesClassDiagram.png)
