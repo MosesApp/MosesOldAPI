@@ -52,3 +52,8 @@ POST   | /currency               | Creates a currency. Returns the created curre
 "name": "Carlos Moses"
 }
 ```
+
+## WebService
+
+### Class Diagram
+![Moses Class Diagram](https://github.com/danielmapar/MosesWebservice/tree/master/documentation/MosesClassDiagram.png)
