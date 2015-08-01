@@ -1,4 +1,4 @@
-from MosesWebserviceApp.models import User, Bill, BillUser, Group, GroupUser, Currency
+from MosesWebserviceApp.models import User, Bill, UserExpense, Group, GroupUser, Currency
 from rest_framework import serializers
 from MosesWebserviceApp.fields import Base64ImageField
 
@@ -76,17 +76,17 @@ class GroupSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'image', 'creator', 'status')
 
 
-class BillUserSerializer(serializers.ModelSerializer):
+class UserExpenseSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = BillUser
+        model = UserExpense
         fields = ('id', 'bill', 'amount', 'member', 'relation')
 
 
 class BillSerializer(serializers.ModelSerializer):
 
     receipt_image = Base64ImageField(required=False, allow_null=True)
-    members = BillUserSerializer(many=True)
+    members = UserExpenseSerializer(many=True)
 
     def create(self, validated_data):
         members_data = validated_data.pop('members')
@@ -117,7 +117,7 @@ class BillSerializer(serializers.ModelSerializer):
                                                               member_obj[1])
                         taker_list.append(member)
                         takers_total = takers_total + amount[1]
-                        bill_users.append(BillUser(bill=None,
+                        bill_users.append(UserExpense(bill=None,
                                                    amount=amount[1],
                                                    member=member_obj[1],
                                                    relation=relation[1],
@@ -136,7 +136,7 @@ class BillSerializer(serializers.ModelSerializer):
 
                     if relation[1] == 'debtor':
                         debtor_list.append(member)
-                        bill_users.append(BillUser(bill=None,
+                        bill_users.append(UserExpense(bill=None,
                                                    amount=0.0,
                                                    member=member_obj[1],
                                                    relation=relation[1],
@@ -193,12 +193,12 @@ class BillSerializerStandard(serializers.ModelSerializer):
         fields = ('id', 'name', 'description', 'group', 'receipt_image', 'amount', 'currency', 'date')
 
 
-class BillUserSerializerUser(serializers.ModelSerializer):
+class UserExpenseSerializerUser(serializers.ModelSerializer):
 
     bill = BillSerializerStandard()
 
     class Meta:
-        model = BillUser
+        model = UserExpense
         fields = ('id', 'bill', 'amount', 'member', 'relation', 'status')
 
 
@@ -230,6 +230,3 @@ class CurrencySerializer(serializers.ModelSerializer):
     class Meta:
         model = Currency
         fields = ('id', 'prefix', 'description')
-
-
-

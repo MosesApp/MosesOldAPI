@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
             bases=(models.Model,),
         ),
         migrations.CreateModel(
-            name='BillUser',
+            name='UserExpense',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('amount', models.FloatField(null=True)),
@@ -119,7 +119,7 @@ class Migration(migrations.Migration):
             unique_together=set([('prefix',)]),
         ),
         migrations.AddField(
-            model_name='billuser',
+            model_name='UserExpense',
             name='member',
             field=models.ForeignKey(related_name='member', to='MosesWebserviceApp.User'),
             preserve_default=True,

@@ -48,16 +48,16 @@ urlpatterns = format_suffix_patterns(patterns('MosesWebserviceApp.views',
         name='bill-create'),
 
     # Bill User
-    url(r'^listBillUsers/$',
-        views.BillUserList.as_view(),
+    url(r'^listUserExpenses/$',
+        views.UserExpenseList.as_view(),
         name='bill_user-list'),
 
-    url(r'^createBillUser/$',
-        views.BillUserCreate.as_view(),
+    url(r'^createUserExpense/$',
+        views.UserExpenseCreate.as_view(),
         name='bill_user-create'),
 
-    url(r'^getBillUser/(?P<pk>[0-9]+)/$',
-        views.BillUserDetail.as_view(),
+    url(r'^getUserExpense/(?P<pk>[0-9]+)/$',
+        views.UserExpenseDetail.as_view(),
         name='bill_user-details'),
 
     # Currency

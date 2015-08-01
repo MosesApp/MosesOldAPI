@@ -1,6 +1,6 @@
-from MosesWebserviceApp.models import User, Group, Bill, BillUser, GroupUser, Currency
+from MosesWebserviceApp.models import User, Group, Bill, UserExpense, GroupUser, Currency
 from MosesWebserviceApp.serializers import UserSerializer, GroupSerializer, BillSerializer,\
-    ReadGroupUserSerializerUser, ReadGroupUserSerializerGroup, WriteGroupUserSerializer, BillUserSerializerUser, \
+    ReadGroupUserSerializerUser, ReadGroupUserSerializerGroup, WriteGroupUserSerializer, UserExpenseSerializerUser, \
     CreateGroupSerializer, CurrencySerializer
 from rest_framework import generics, permissions
 from rest_framework.decorators import api_view
@@ -119,29 +119,29 @@ class BillCreate(generics.CreateAPIView):
 
 
 # List all Bill_User
-class BillUserList(generics.ListAPIView):
-    queryset = BillUser.objects.all()
-    serializer_class = BillUserSerializerUser
+class UserExpenseList(generics.ListAPIView):
+    queryset = UserExpense.objects.all()
+    serializer_class = UserExpenseSerializerUser
     permission_classes = (permissions.IsAuthenticated,)
 
 # Create Bill_User
-class BillUserCreate(generics.CreateAPIView):
-    queryset = BillUser.objects.all()
-    serializer_class = BillUserSerializerUser
+class UserExpenseCreate(generics.CreateAPIView):
+    queryset = UserExpense.objects.all()
+    serializer_class = UserExpenseSerializerUser
     permission_classes = (permissions.IsAuthenticated,)
 
     def perform_create(self, serializer):
         serializer.save()
 
 # List the details from an specific Bill_User (filter by user_id)
-class BillUserDetail(generics.ListAPIView):
-    serializer_class = BillUserSerializerUser
+class UserExpenseDetail(generics.ListAPIView):
+    serializer_class = UserExpenseSerializerUser
     permission_classes = (permissions.IsAuthenticated,)
 
     def get_queryset(self):
 
         key = self.kwargs['pk']
-        return BillUser.objects.filter(member__pk=key)
+        return UserExpense.objects.filter(member__pk=key)
 
 
 # List all Currency

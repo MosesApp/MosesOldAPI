@@ -74,7 +74,7 @@ class Bill(models.Model):
     class Meta:
         ordering = ('amount', )
 
-class BillUser(models.Model):
+class UserExpense(models.Model):
     bill = models.ForeignKey(Bill, blank=False, null=True, related_name='bill')
     amount = models.FloatField(blank=False, null=True)
     member = models.ForeignKey(User, blank=False, related_name='member')
@@ -106,5 +106,3 @@ class GroupUser(models.Model):
     class Meta:
         ordering = ('user', )
         unique_together = (("user", "group"),)
-
-
