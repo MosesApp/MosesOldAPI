@@ -12,7 +12,7 @@ Method |          Endpoint           | Description
 -------|-----------------------------|-------------
 GET    | /users                      | Returns list of users.
 GET    | /users/{facebook_id}        | Gets the user with the given ID.
-GET    | /users/fromGroup/{group_id} | Returns list of users from the group.
+GET    | /users/byGroup/{group_id}   | Returns list of users from the group.
 POST   | /users                      | Creates user. Returns the created user.
 
 
@@ -21,7 +21,7 @@ POST   | /users                      | Creates user. Returns the created user.
 Method |         Endpoint            | Description
 -------|-----------------------------|-------------
 GET    | /groups                     | Returns list of groups.
-GET    | /groups/fromUser/{user_id}  | Returns list of groups from the user.
+GET    | /groups/byUser/{user_id}    | Returns list of groups from the user.
 POST   | /groups                     | Creates a group. Returns the created group.
 POST   | /groups/addUser             | Adds User to group. Returns *Change?*
 
@@ -36,8 +36,7 @@ POST   | /bills                      | Creates a bill. Returns the created bill.
 
 Method |         Endpoint            | Description
 -------|-----------------------------|-------------
-GET    | /expense/{user_id}          | Returns list of expenses from user.
-GET    | /expense/{group_id}         | Returns list of expenses from the group.
+GET    | /expensesByUser/{user_id}   | Returns list of expenses from user.
 
 #### Currency
 
