@@ -14,42 +14,29 @@ def api_root(request, format=None):
 
     return Response(OrderedDict([
         ("User", "------------------------------------------------------------------------------"),
-        ('[READ ALL] Users', reverse('user-list', request=request, format=format)),
-        ('[READ] User (provide facebook_id)', reverse('user-details-filter-facebookid', request=request, args=[1111111111])),
-        ('[CREATE] User', reverse('user-create', request=request, format=format)),
+        ('[CRUD] Users', reverse('usersCRUD', request=request, format=format)),
+        ('[READ] Users from Group {group_id}', reverse('usersByGroup', request=request, args=[1])),
+        ('[READ] User {facebook_id}', reverse('userByFacebookId', request=request, args=[1111111111])),
         ("Group", "------------------------------------------------------------------------------"),
-        ('[READ ALL] Groups', reverse('group-list', request=request, format=format)),
-        ('[CREATE] Group', reverse('group-create', request=request, format=format)),
-        ("Group_User", "------------------------------------------------------------------------------"),
-        ('[READ] Group User Relation (provide group_id)', reverse('group_user-details-filter-groupid', request=request, args=[1111111111])),
-        ('[READ] Group User Relation (provide user_id)', reverse('group_user-details-filter-userid', request=request, args=[1111111111])),
-        ('[CREATE] Group User Relation', reverse('group_user-create', request=request, format=format)),
+        ('[CRUD] Groups', reverse('groupsCRUD', request=request, format=format)),
+        ('[CREATE] Add User to Group', reverse('addGroupUser', request=request, format=format)),
+        ('[READ] Groups from User {user_id}', reverse('groupsByUser', request=request, args=[1])),
         ("Bill", "------------------------------------------------------------------------------"),
-        ('[CREATE] Bills', reverse('bill-create', request=request, format=format)),
-        ("Bill_User", "------------------------------------------------------------------------------"),
-        ('[READ ALL] Bill_Users', reverse('bill_user-list', request=request, format=format)),
-        ('[READ] Bill_User Relation (provide user_id)', reverse('bill_user-details', request=request, args=[1111111111])),
-        ('[CREATE] Bill_User Relation', reverse('bill_user-create', request=request, format=format)),
+        ('[CREATE] Bills', reverse('billCreate', request=request, format=format)),
+        ("Expenses", "------------------------------------------------------------------------------"),
+        ('[CRUD] Expenses', reverse('expensesCRUD', request=request, format=format)),
+        ('[READ] Expenses by User {user_id}', reverse('expensesByUser', request=request, args=[1])),
         ("Currency", "------------------------------------------------------------------------------"),
-        ('[READ ALL] Currencies', reverse('currency-list', request=request, format=format)),
-        ('[CREATE] Currency', reverse('currency-create', request=request, format=format))
+        ('[READ ALL] Currencies', reverse('currenciesCRUD', request=request, format=format)),
     ]))
 
 
-# List all Users
-class UserList(generics.ListAPIView):
+# Users
+class UsersCRUD(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
-# Create a User
-class UserCreate(generics.CreateAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
-    permission_classes = (permissions.IsAuthenticated,)
-
-    def perform_create(self, serializer):
-        serializer.save()
 
 # List the details from an specific User (filter by facebook_id)
 class UserDetails(generics.ListAPIView):
@@ -62,24 +49,14 @@ class UserDetails(generics.ListAPIView):
         return user_list
 
 
-# Create a Group
-class GroupCreate(generics.CreateAPIView):
-    queryset = Group.objects.all()
-    serializer_class = CreateGroupSerializer
-    permission_classes = (permissions.IsAuthenticated,)
-
-    def perform_create(self, serializer):
-        serializer.save()
-
-
-# List all Groups
-class GroupList(generics.ListAPIView):
+# Groups
+class GroupsCRUD(generics.ListCreateAPIView):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
 
-# Create Group_User
+# Add User to Group
 class GroupUserCreate(generics.CreateAPIView):
     queryset = GroupUser.objects.all()
     serializer_class = WriteGroupUserSerializer
@@ -87,7 +64,7 @@ class GroupUserCreate(generics.CreateAPIView):
 
 
 # List all Group_User by User_id
-class GroupUserDetailUser(generics.ListAPIView):
+class GroupUserDetailByUser(generics.ListAPIView):
     serializer_class = ReadGroupUserSerializerUser
     permission_classes = (permissions.IsAuthenticated,)
 
@@ -98,7 +75,7 @@ class GroupUserDetailUser(generics.ListAPIView):
 
 
 # List all Group_User by Group_id
-class GroupUserDetailGroup(generics.ListAPIView):
+class GroupUserDetailByGroup(generics.ListAPIView):
     serializer_class = ReadGroupUserSerializerGroup
     permission_classes = (permissions.IsAuthenticated,)
 
@@ -108,7 +85,7 @@ class GroupUserDetailGroup(generics.ListAPIView):
         return GroupUser.objects.filter(group__pk=key)
 
 
-# Create Bill
+# Bills
 class BillCreate(generics.CreateAPIView):
     queryset = Bill.objects.all()
     serializer_class = BillSerializer
@@ -118,23 +95,15 @@ class BillCreate(generics.CreateAPIView):
         serializer.save()
 
 
-# List all Bill_User
-class UserExpenseList(generics.ListAPIView):
+# Exepenses
+class ExpensesCRUD(generics.ListCreateAPIView):
     queryset = UserExpense.objects.all()
     serializer_class = UserExpenseSerializerUser
     permission_classes = (permissions.IsAuthenticated,)
 
-# Create Bill_User
-class UserExpenseCreate(generics.CreateAPIView):
-    queryset = UserExpense.objects.all()
-    serializer_class = UserExpenseSerializerUser
-    permission_classes = (permissions.IsAuthenticated,)
-
-    def perform_create(self, serializer):
-        serializer.save()
 
 # List the details from an specific Bill_User (filter by user_id)
-class UserExpenseDetail(generics.ListAPIView):
+class ExpensesByUser(generics.ListAPIView):
     serializer_class = UserExpenseSerializerUser
     permission_classes = (permissions.IsAuthenticated,)
 
@@ -144,18 +113,8 @@ class UserExpenseDetail(generics.ListAPIView):
         return UserExpense.objects.filter(member__pk=key)
 
 
-# List all Currency
-class CurrencyList(generics.ListAPIView):
+# Currencies
+class CurrenciesCRUD(generics.ListCreateAPIView):
     queryset = Currency.objects.all()
     serializer_class = CurrencySerializer
     permission_classes = (permissions.IsAuthenticated,)
-
-
-# Create Currency
-class CurrencyCreate(generics.CreateAPIView):
-    queryset = Currency.objects.all()
-    serializer_class = CurrencySerializer
-    permission_classes = (permissions.IsAuthenticated,)
-
-    def perform_create(self, serializer):
-        serializer.save()

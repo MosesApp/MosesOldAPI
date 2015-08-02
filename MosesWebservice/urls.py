@@ -7,69 +7,51 @@ from django.conf.urls.static import static
 urlpatterns = format_suffix_patterns(patterns('MosesWebserviceApp.views',
     url(r'^$', 'api_root'),
 
-    # User
-    url(r'^listUsers/$',
-        views.UserList.as_view(),
-        name='user-list'),
+    # Users
+    url(r'^users/$',
+        views.UsersCRUD.as_view(),
+        name='usersCRUD'),
 
-    url(r'^createUser/$',
-        views.UserCreate.as_view(),
-        name='user-create'),
+    url(r'^users/fromGroup/(?P<pk>[0-9]+)/$',
+        views.GroupUserDetailByUser.as_view(),
+        name='usersByGroup'),
 
     url(r'^getUser/(?P<pk>[0-9&]+)/$',
         views.UserDetails.as_view(),
-        name='user-details-filter-facebookid'),
+        name='userByFacebookId'),
 
-    # Group
-    url(r'^createGroup/$',
-        views.GroupCreate.as_view(),
-        name='group-create'),
+    # Groups
+    url(r'^groups/$',
+        views.GroupsCRUD.as_view(),
+        name='groupsCRUD'),
 
-    url(r'^listGroups/$',
-        views.GroupList.as_view(),
-        name='group-list'),
-
-    # Group_User
-    url(r'^createGroupUserRelation/$',
+    url(r'^groups/addUser/$',
         views.GroupUserCreate.as_view(),
-        name='group_user-create'),
+        name='addGroupUser'),
 
-    url(r'^getUserGroupRelationGroupId/(?P<pk>[0-9]+)/$',
-        views.GroupUserDetailGroup.as_view(),
-        name='group_user-details-filter-groupid'),
-
-    url(r'^getUserGroupRelationUserId/(?P<pk>[0-9]+)/$',
-        views.GroupUserDetailUser.as_view(),
-        name='group_user-details-filter-userid'),
+    url(r'^groups/fromUser/(?P<pk>[0-9]+)/$',
+        views.GroupUserDetailByGroup.as_view(),
+        name='groupsByUser'),
 
     # Bill
     url(r'^createBill/$',
         views.BillCreate.as_view(),
-        name='bill-create'),
+        name='billCreate'),
 
-    # Bill User
-    url(r'^listUserExpenses/$',
-        views.UserExpenseList.as_view(),
-        name='bill_user-list'),
+    # Expenses
+    url(r'^expenses/$',
+        views.ExpensesCRUD.as_view(),
+        name='expensesCRUD'),
 
-    url(r'^createUserExpense/$',
-        views.UserExpenseCreate.as_view(),
-        name='bill_user-create'),
-
-    url(r'^getUserExpense/(?P<pk>[0-9]+)/$',
-        views.UserExpenseDetail.as_view(),
-        name='bill_user-details'),
+    url(r'^expenses/fromUser/(?P<pk>[0-9]+)/$',
+        views.ExpensesByUser.as_view(),
+        name='expensesByUser'),
 
     # Currency
-    url(r'^listCurrencies/$',
-        views.CurrencyList.as_view(),
-        name='currency-list'),
-
-    url(r'^createCurrency/$',
-        views.CurrencyCreate.as_view(),
-        name='currency-create'),
+    url(r'^currencies/$',
+        views.CurrenciesCRUD.as_view(),
+        name='currenciesCRUD'),
 
 )) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += patterns('', url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),)
-

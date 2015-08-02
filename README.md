@@ -8,39 +8,43 @@ About Moses.
 
 #### User
 
-Method |          Endpoint       | Description
--------|-------------------------|-------------
-GET    | /users                  | Returns list of users.
-GET    | /users/{facebook_id}    | Gets the user with the given ID.
-POST   | /users                  | Creates user. Returns the created user.
+Method |          Endpoint           | Description
+-------|-----------------------------|-------------
+GET    | /users                      | Returns list of users.
+GET    | /users/{facebook_id}        | Gets the user with the given ID.
+GET    | /users/fromGroup/{group_id} | Returns list of users from the group.
+POST   | /users                      | Creates user. Returns the created user.
+
 
 #### Group
 
-Method |         Endpoint        | Description
--------|-------------------------|-------------
-GET    | /groups                 | Returns list of groups.
-GET    | /groups/{user_id}       | Returns list of groups from the user.
-POST   | /groups                 | Creates a group. Returns the created group.
+Method |         Endpoint            | Description
+-------|-----------------------------|-------------
+GET    | /groups                     | Returns list of groups.
+GET    | /groups/fromUser/{user_id}  | Returns list of groups from the user.
+POST   | /groups                     | Creates a group. Returns the created group.
+POST   | /groups/addUser             | Adds User to group. Returns *Change?*
+
 
 #### Bill
 
-Method |         Endpoint        | Description
--------|-------------------------|-------------
-POST   | /bills                  | Creates a bill. Returns the created bill.
+Method |         Endpoint            | Description
+-------|-----------------------------|-------------
+POST   | /bills                      | Creates a bill. Returns the created bill.
 
 #### Expense
 
-Method |         Endpoint        | Description
--------|-------------------------|-------------
-GET    | /expense/{user_id}      | Returns list of expenses from user.
-GET    | /expense/{group_id}     | Returns list of expenses from the group.
+Method |         Endpoint            | Description
+-------|-----------------------------|-------------
+GET    | /expense/{user_id}          | Returns list of expenses from user.
+GET    | /expense/{group_id}         | Returns list of expenses from the group.
 
 #### Currency
 
-Method |        Endpoint         | Description
--------|-------------------------|-------------
-GET    | /currency               | Returns list of currencies.
-POST   | /currency               | Creates a currency. Returns the created currency.
+Method |        Endpoint              | Description
+-------|------------------------------|-------------
+GET    | /currency                    | Returns list of currencies.
+POST   | /currency                    | Creates a currency. Returns the created currency.
 
 ### Examples
 
