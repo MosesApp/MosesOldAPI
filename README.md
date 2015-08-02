@@ -23,7 +23,7 @@ Method |         Endpoint            | Description
 GET    | /groups                     | Returns list of groups.
 GET    | /groups/byUser/{user_id}    | Returns list of groups from the user.
 POST   | /groups                     | Creates a group. Returns the created group.
-POST   | /groups/addUser             | Adds User to group. Returns *Change?*
+POST   | /groups/addUser             | Adds User to group. Returns *(Change?)*
 
 
 #### Bill
@@ -36,7 +36,7 @@ POST   | /bills                      | Creates a bill. Returns the created bill.
 
 Method |         Endpoint            | Description
 -------|-----------------------------|-------------
-GET    | /expensesByUser/{user_id}   | Returns list of expenses from user.
+GET    | /expenses/byUser/{user_id}  | Returns list of expenses from user.
 
 #### Currency
 
