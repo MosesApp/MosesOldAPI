@@ -74,10 +74,10 @@ class Bill(models.Model):
     class Meta:
         ordering = ('amount', )
 
-class UserExpense(models.Model):
+class Expense(models.Model):
     bill = models.ForeignKey(Bill, blank=False, null=True, related_name='bill')
     amount = models.FloatField(blank=False, null=True)
-    member = models.ForeignKey(User, blank=False, related_name='member')
+    user = models.ForeignKey(User, blank=False, related_name='expense_user')
     relation = models.CharField(choices=BILL_RELATION,
                                 max_length=10,
                                 blank=False,
@@ -89,14 +89,14 @@ class UserExpense(models.Model):
     payed_date = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
-        return "%s;%s;%s;%s" % (self.bill, self.member, self.relation, self.status)
+        return "%s;%s;%s;%s" % (self.bill, self.user, self.relation, self.status)
 
     class Meta:
-        ordering = ('member', )
+        ordering = ('user', )
 
 
 class GroupUser(models.Model):
-    user = models.ForeignKey(User, blank=False, related_name='user')
+    user = models.ForeignKey(User, blank=False, related_name='group_user')
     group = models.ForeignKey(Group, blank=False, related_name='group')
     administrator = models.BooleanField(blank=False, default=False)
 

@@ -130,5 +130,6 @@ STATIC_URL = NGINX_SERVER_URL + '/static/'
 MEDIA_URL = NGINX_SERVER_URL + os.sep + 'media' + os.sep
 
 REST_FRAMEWORK = {
-    'PAGINATE_BY': 1000000
+    'DEFAULT_PAGINATION_CLASS': 'MosesWebserviceApp.pagination.LinkHeaderPagination',
+    'PAGE_SIZE': 1000000
 }

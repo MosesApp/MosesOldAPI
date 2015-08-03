@@ -1,4 +1,4 @@
-from MosesWebserviceApp.models import User, Bill, UserExpense, Group, GroupUser, Currency
+from MosesWebserviceApp.models import User, Bill, Expense, Group, GroupUser, Currency
 from rest_framework import serializers
 from MosesWebserviceApp.fields import Base64ImageField
 
@@ -10,7 +10,6 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class GroupUserSerializer(serializers.ModelSerializer):
-
     user_facebook = serializers.CharField(max_length=20)
 
     class Meta:
@@ -29,10 +28,8 @@ class CreateGroupSerializer(serializers.ModelSerializer):
         # Check for one valid member in the members list
         one_valid_member = False
         for member in members_data:
-            member = list(member.items())
-            user_facebook = member[0][1]
-            user_obj = User.objects.filter(facebook_id=user_facebook)
-            if user_obj and validated_data['creator'].facebook_id != user_facebook:
+            user = User.objects.filter(facebook_id=member['user_facebook'])
+            if user and validated_data['creator'].facebook_id != member['user_facebook']:
                 one_valid_member = True
                 break
 
@@ -45,23 +42,17 @@ class CreateGroupSerializer(serializers.ModelSerializer):
         group.members = []
 
         for member in members_data:
-            member = list(member.items())
-            if len(member) >= 1:
-                user_facebook = member[0][1]
-                if len(member) == 1:
-                    administrator = False
-                else:
-                    administrator = member[1][1]
-                user_obj = User.objects.filter(facebook_id=user_facebook)
-                if user_obj:
-                    group_user = GroupUser(user=user_obj[0], group=group, administrator=administrator)
-                    group_user.user_facebook = user_facebook
-                    group_user.save()
-                    group.members.append(group_user)
+            if 'administrator' not in member:
+                member['administrator'] = False
 
-        if len(group.members) == 0:
-            raise serializers.ValidationError("Check the group members facebook_id for invalid ones")
+            user = User.objects.filter(facebook_id=member['user_facebook'])
+            if not user or 'user_facebook' not in member:
+                raise serializers.ValidationError("Check the group members facebook_id for invalid ones")
 
+            group_user = GroupUser(user=user[0], group=group, administrator=member['administrator'])
+            group_user.user_facebook = member['user_facebook']
+            group_user.save()
+            group.members.append(group_user)
         return group
 
     class Meta:
@@ -76,87 +67,70 @@ class GroupSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'image', 'creator', 'status')
 
 
-class UserExpenseSerializer(serializers.ModelSerializer):
+class ExpenseSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = UserExpense
-        fields = ('id', 'bill', 'amount', 'member', 'relation')
+        model = Expense
+        fields = ('id', 'bill', 'amount', 'user', 'relation')
 
 
 class BillSerializer(serializers.ModelSerializer):
 
     receipt_image = Base64ImageField(required=False, allow_null=True)
-    members = UserExpenseSerializer(many=True)
+    expenses = ExpenseSerializer(many=True)
 
     def create(self, validated_data):
-        members_data = validated_data.pop('members')
+        expenses_data = validated_data.pop('expenses')
 
         # Validate Bill and Members
         debtor_list = []
         taker_list = []
         takers_total = 0.0
-        member_obj = None
-        bill_users = []
+        member = None
+        expenses = []
 
-        for member in members_data:
-            member = list(member.items())
+        for expense in expenses_data:
             # Taker rules
-            if len(member) == 3:
-                if member[0][0] == 'amount' and\
-                   member[1][0] == 'member' and \
-                   member[2][0] == 'relation':
+            if 'relation' not in expense:
+                raise serializers.ValidationError("All expenses must have a relation ('taker' or 'debtor')")
 
-                    amount = member[0]
-                    member_obj = member[1]
-                    relation = member[2]
+            if 'user' not in expense:
+                raise serializers.ValidationError("All expenses must have an user")
 
-                    if relation[1] == 'taker':
-                        if amount[1] <= 0.0 or amount[1] > validated_data['amount']:
-                            raise serializers.ValidationError("Bill member %s should be assigned an amount higher than "
-                                                              "zero, and lower equal the bill's total amount" %
-                                                              member_obj[1])
-                        taker_list.append(member)
-                        takers_total = takers_total + amount[1]
-                        bill_users.append(UserExpense(bill=None,
-                                                   amount=amount[1],
-                                                   member=member_obj[1],
-                                                   relation=relation[1],
-                                                   status="not paid"))
-                    else:
-                        raise serializers.ValidationError("A member is composed of three attributes: "
-                                                          "member, relation and amount (if relation=='taker')")
-            # Debtor rules
-            elif len(member) == 2:
+            if not GroupUser.objects.filter(group=validated_data['group'], user=expense['user']).exists():
+                raise serializers.ValidationError("User %s is not in group %s" %
+                                                  (expense['user'].full_name, validated_data['group']))
 
-                if member[0][0] == 'member' and \
-                   member[1][0] == 'relation':
+            if expense['relation'] is 'taker':
+                if 'amount' not in expense or expense['amount'] <= 0.0 or expense['amount'] > validated_data['amount']:
+                    raise serializers.ValidationError("Expense %s should be assigned"
+                    "an amount higher than zero, and lower equal the bill's total amount" %
+                    expense['user'].full_name)
 
-                    member_obj = member[0]
-                    relation = member[1]
+                taker_list.append(expense)
+                takers_total = takers_total + expense['amount']
+                expenses.append(Expense(bill=None,
+                                           amount=expense['amount'],
+                                           user=expense['user'],
+                                           relation=expense['relation'],
+                                           status="not paid"))
 
-                    if relation[1] == 'debtor':
-                        debtor_list.append(member)
-                        bill_users.append(UserExpense(bill=None,
-                                                   amount=0.0,
-                                                   member=member_obj[1],
-                                                   relation=relation[1],
-                                                   status="not paid"))
-                    else:
-                        raise serializers.ValidationError("A member is composed of three attributes: "
-                                                          "member, relation and amount (if relation=='taker')")
+
+            elif expense['relation'] is 'debtor':
+                    debtor_list.append(expense)
+                    expenses.append(Expense(bill=None,
+                                               amount=0.0,
+                                               user=expense['user'],
+                                               relation=expense['relation'],
+                                               status="not paid"))
             else:
-                raise serializers.ValidationError("A member is composed of three attributes: "
-                                                  "member, relation and amount (if relation=='taker')")
+                raise serializers.ValidationError("The expense has an invalid relation")
 
-            if not GroupUser.objects.filter(group=validated_data['group'], user=member_obj[1]).exists():
-                raise serializers.ValidationError("Member %s is not in group %s" %
-                                                  (member_obj[1], validated_data['group']))
-
-        for debtor_i in debtor_list:
-            for taker_i in taker_list:
-                if taker_i[1][1] == debtor_i[1][1]:
-                    raise serializers.ValidationError("Member %s cannot be a debtor and taker at the same time"
-                                                      % taker_i[1][1])
+        for debtor in debtor_list:
+            for taker in taker_list:
+                if taker['user'] == debtor['user']:
+                    raise serializers.ValidationError("Expense %s cannot be a debtor and taker at the same time"
+                                                      % taker['user'].full_name)
 
         if not taker_list or not debtor_list:
             raise serializers.ValidationError("Bill should be composed from at least one taker, and one debtor")
@@ -168,22 +142,22 @@ class BillSerializer(serializers.ModelSerializer):
 
         # Save Bill and Members
         bill = Bill.objects.create(**validated_data)
-        bill.members = []
+        bill.expenses = []
 
-        for bill_user in bill_users:
-            bill_user.bill = bill
-            if bill_user.relation == "debtor":
-                bill_user.amount = debtor_val
-            elif bill_user.relation == "taker":
-                bill_user.amount -= debtor_val
-            bill_user.save()
-            bill.members.append(bill_user)
+        for expense in expenses:
+            expense.bill = bill
+            if expense.relation == "debtor":
+                expense.amount = debtor_val
+            elif expense.relation == "taker":
+                expense.amount -= debtor_val
+            expense.save()
+            bill.expenses.append(expense)
 
         return bill
 
     class Meta:
         model = Bill
-        fields = ('id', 'name', 'description', 'group', 'receipt_image', 'amount', 'currency', 'date', 'members')
+        fields = ('id', 'name', 'description', 'group', 'receipt_image', 'amount', 'currency', 'date', 'expenses')
 
 
 class BillSerializerStandard(serializers.ModelSerializer):
@@ -193,16 +167,16 @@ class BillSerializerStandard(serializers.ModelSerializer):
         fields = ('id', 'name', 'description', 'group', 'receipt_image', 'amount', 'currency', 'date')
 
 
-class UserExpenseSerializerUser(serializers.ModelSerializer):
+class ExpenseByUserSerializer(serializers.ModelSerializer):
 
     bill = BillSerializerStandard()
 
     class Meta:
-        model = UserExpense
-        fields = ('id', 'bill', 'amount', 'member', 'relation', 'status')
+        model = Expense
+        fields = ('id', 'bill', 'amount', 'user', 'relation', 'status')
 
 
-class ReadGroupUserSerializerUser(serializers.ModelSerializer):
+class GroupUserByUserSerializer(serializers.ModelSerializer):
     group = GroupSerializer()
 
     class Meta:
@@ -210,7 +184,7 @@ class ReadGroupUserSerializerUser(serializers.ModelSerializer):
         fields = ('id', 'user', 'group', 'administrator')
 
 
-class ReadGroupUserSerializerGroup(serializers.ModelSerializer):
+class GroupUserByGroupSerializer(serializers.ModelSerializer):
     user = UserSerializer()
 
     class Meta:
@@ -218,7 +192,7 @@ class ReadGroupUserSerializerGroup(serializers.ModelSerializer):
         fields = ('id', 'user', 'group', 'administrator')
 
 
-class WriteGroupUserSerializer(serializers.ModelSerializer):
+class AddGroupUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = GroupUser

@@ -1,7 +1,7 @@
-from MosesWebserviceApp.models import User, Group, Bill, UserExpense, GroupUser, Currency
+from MosesWebserviceApp.models import User, Group, Bill, Expense, GroupUser, Currency
 from MosesWebserviceApp.serializers import UserSerializer, GroupSerializer, BillSerializer,\
-    ReadGroupUserSerializerUser, ReadGroupUserSerializerGroup, WriteGroupUserSerializer, UserExpenseSerializerUser, \
-    CreateGroupSerializer, CurrencySerializer
+    GroupUserByUserSerializer, GroupUserByGroupSerializer, AddGroupUserSerializer, ExpenseByUserSerializer, \
+    CreateGroupSerializer, ExpenseSerializer, CurrencySerializer
 from rest_framework import generics, permissions
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -51,36 +51,40 @@ class UserDetails(generics.ListAPIView):
 
 # Groups
 class GroupsCRUD(generics.ListCreateAPIView):
-    queryset = Group.objects.all()
-    serializer_class = GroupSerializer
-    permission_classes = (permissions.IsAuthenticated,)
+        queryset = Group.objects.all()
+        permission_classes = (permissions.IsAuthenticated,)
+
+        def get_serializer_class(self):
+            if self.request.method == 'GET':
+                return GroupSerializer
+            if self.request.method == 'POST':
+                return CreateGroupSerializer
+
 
 
 # Add User to Group
 class GroupUserCreate(generics.CreateAPIView):
     queryset = GroupUser.objects.all()
-    serializer_class = WriteGroupUserSerializer
+    serializer_class = AddGroupUserSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
 
 # List all Group_User by User_id
 class GroupUserDetailByUser(generics.ListAPIView):
-    serializer_class = ReadGroupUserSerializerUser
+    serializer_class = GroupUserByUserSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
     def get_queryset(self):
-
         key = self.kwargs['pk']
         return GroupUser.objects.filter(user__pk=key)
 
 
 # List all Group_User by Group_id
 class GroupUserDetailByGroup(generics.ListAPIView):
-    serializer_class = ReadGroupUserSerializerGroup
+    serializer_class = GroupUserByGroupSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
     def get_queryset(self):
-
         key = self.kwargs['pk']
         return GroupUser.objects.filter(group__pk=key)
 
@@ -97,20 +101,20 @@ class BillCreate(generics.CreateAPIView):
 
 # Exepenses
 class ExpensesCRUD(generics.ListCreateAPIView):
-    queryset = UserExpense.objects.all()
-    serializer_class = UserExpenseSerializerUser
+    queryset = Expense.objects.all()
+    serializer_class = ExpenseSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
 
 # List the details from an specific Bill_User (filter by user_id)
 class ExpensesByUser(generics.ListAPIView):
-    serializer_class = UserExpenseSerializerUser
+    serializer_class = ExpenseByUserSerializer
     permission_classes = (permissions.IsAuthenticated,)
 
     def get_queryset(self):
 
         key = self.kwargs['pk']
-        return UserExpense.objects.filter(member__pk=key)
+        return Expense.objects.filter(user__pk=key)
 
 
 # Currencies
