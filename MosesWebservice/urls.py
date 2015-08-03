@@ -16,9 +16,9 @@ urlpatterns = format_suffix_patterns(patterns('MosesWebserviceApp.views',
         views.GroupUserDetailByUser.as_view(),
         name='usersByGroup'),
 
-    url(r'^getUser/(?P<pk>[0-9&]+)/$',
+    url(r'^users/(?P<pk>[0-9&]+)/$',
         views.UserDetails.as_view(),
-        name='userByFacebookId'),
+        name='userDetails'),
 
     # Groups
     url(r'^groups/$',
@@ -51,7 +51,7 @@ urlpatterns = format_suffix_patterns(patterns('MosesWebserviceApp.views',
     url(r'^currencies/$',
         views.CurrenciesCRUD.as_view(),
         name='currenciesCRUD'),
-        
+
 )) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += patterns('', url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),)

@@ -16,7 +16,7 @@ def api_root(request, format=None):
         ("User", "------------------------------------------------------------------------------"),
         ('[CRUD] Users', reverse('usersCRUD', request=request, format=format)),
         ('[READ] Users from Group {group_id}', reverse('usersByGroup', request=request, args=[1])),
-        ('[READ] User {facebook_id}', reverse('userByFacebookId', request=request, args=[1111111111])),
+        ('[READ] User {facebook_id}', reverse('userDetails', request=request, args=[1111111111])),
         ("Group", "------------------------------------------------------------------------------"),
         ('[CRUD] Groups', reverse('groupsCRUD', request=request, format=format)),
         ('[CREATE] Add User to Group', reverse('addGroupUser', request=request, format=format)),
