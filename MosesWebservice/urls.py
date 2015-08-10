@@ -13,7 +13,7 @@ urlpatterns = format_suffix_patterns(patterns('MosesWebserviceApp.views',
         name='usersCRUD'),
 
     url(r'^users/byGroup/(?P<pk>[0-9]+)/$',
-        views.GroupUserDetailByUser.as_view(),
+        views.GroupUserDetailByGroup.as_view(),
         name='usersByGroup'),
 
     url(r'^users/(?P<pk>[0-9&]+)/$',
@@ -30,7 +30,7 @@ urlpatterns = format_suffix_patterns(patterns('MosesWebserviceApp.views',
         name='addGroupUser'),
 
     url(r'^groups/byUser/(?P<pk>[0-9]+)/$',
-        views.GroupUserDetailByGroup.as_view(),
+        views.GroupUserDetailByUser.as_view(),
         name='groupsByUser'),
 
     # Bill
